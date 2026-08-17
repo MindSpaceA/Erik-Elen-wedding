@@ -146,13 +146,7 @@ img {
 
     overflow: hidden;
 
-    background:
-        radial-gradient(
-            circle at 50% 40%,
-            #ffffff 0%,
-            #fafbf9 42%,
-            #eef4f6 100%
-        );
+    background: #ffffff;
 
     transition:
         opacity 0.8s ease,
@@ -173,68 +167,52 @@ img {
 
 
 /* =========================================================
-   OPENING DECORATIONS
+   OPENING IMAGE
 ========================================================= */
 
-.opening-decoration {
+.opening-image {
 
     position: absolute;
 
-    width: 300px;
+    inset: 0;
 
-    height: 300px;
-
-    border: 1px solid rgba(160, 186, 198, 0.18);
-
-    border-radius: 50%;
+    z-index: 1;
 
 }
 
 
-.opening-decoration::before {
+.opening-image img {
 
-    content: "";
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: cover;
+
+    object-position: center;
+
+}
+
+
+/* =========================================================
+   IMAGE OVERLAY
+========================================================= */
+
+.opening-overlay {
 
     position: absolute;
 
-    inset: 25px;
+    inset: 0;
 
-    border: 1px solid rgba(160, 186, 198, 0.13);
+    z-index: 2;
 
-    border-radius: 50%;
-
-}
-
-
-.opening-decoration::after {
-
-    content: "";
-
-    position: absolute;
-
-    inset: 55px;
-
-    border: 1px solid rgba(160, 186, 198, 0.10);
-
-    border-radius: 50%;
-
-}
-
-
-.opening-decoration-left {
-
-    left: -180px;
-
-    top: -80px;
-
-}
-
-
-.opening-decoration-right {
-
-    right: -180px;
-
-    bottom: -80px;
+    background:
+        linear-gradient(
+            180deg,
+            rgba(255,255,255,0.10) 0%,
+            rgba(255,255,255,0.08) 45%,
+            rgba(35,45,50,0.28) 100%
+        );
 
 }
 
@@ -261,19 +239,20 @@ img {
 
     padding: 9px 15px;
 
-    border: 1px solid
-        rgba(128, 157, 170, 0.22);
+    border:
+        1px solid
+        rgba(255,255,255,0.55);
 
     border-radius: 30px;
 
     background:
-        rgba(255, 255, 255, 0.65);
+        rgba(255,255,255,0.45);
 
     backdrop-filter: blur(12px);
 
     box-shadow:
         0 8px 25px
-        rgba(100, 125, 138, 0.08);
+        rgba(30,50,60,0.08);
 
 }
 
@@ -284,7 +263,7 @@ img {
 
     background: transparent;
 
-    color: #8a989f;
+    color: rgba(255,255,255,0.82);
 
     font-family: var(--serif);
 
@@ -293,6 +272,10 @@ img {
     letter-spacing: 0.5px;
 
     padding: 2px 4px;
+
+    text-shadow:
+        0 1px 8px
+        rgba(0,0,0,0.18);
 
     transition:
         color 0.3s ease,
@@ -303,16 +286,17 @@ img {
 
 .language-button:hover {
 
-    color: var(--blue-dark);
+    color: #ffffff;
 
-    transform: translateY(-1px);
+    transform:
+        translateY(-1px);
 
 }
 
 
 .language-button.active {
 
-    color: var(--blue-dark);
+    color: #ffffff;
 
     font-weight: 600;
 
@@ -321,7 +305,8 @@ img {
 
 .language-divider {
 
-    color: #c4cdd1;
+    color:
+        rgba(255,255,255,0.65);
 
     font-size: 12px;
 
@@ -329,10 +314,10 @@ img {
 
 
 /* =========================================================
-   INVITATION WRAPPER
+   OPENING CONTENT
 ========================================================= */
 
-.invitation-wrapper {
+.opening-content {
 
     position: relative;
 
@@ -346,209 +331,296 @@ img {
 
     justify-content: center;
 
-}
+    text-align: center;
 
+    color: #ffffff;
 
-/* =========================================================
-   CLOSED INVITATION
-========================================================= */
-
-.closed-invitation {
-
-    position: relative;
-
-    width: min(350px, 78vw);
-
-    aspect-ratio: 0.72;
-
-    border: none;
-
-    padding: 0;
-
-    color: white;
-
-    background:
-        linear-gradient(
-            145deg,
-            #c7dce6 0%,
-            #aec9d7 45%,
-            #91afbf 100%
-        );
-
-    border-radius: 5px;
-
-    box-shadow:
-        0 30px 70px
-        rgba(83, 112, 126, 0.22),
-
-        inset 0 0 0 1px
-        rgba(255, 255, 255, 0.35);
-
-    overflow: hidden;
-
-    transition:
-        transform 0.7s cubic-bezier(
-            .2,
-            .8,
-            .2,
-            1
-        ),
-        opacity 0.6s ease;
-
-}
-
-
-.closed-invitation:hover {
+    padding: 30px;
 
     transform:
-        translateY(-8px)
-        scale(1.015);
-
-    box-shadow:
-        0 40px 85px
-        rgba(83, 112, 126, 0.25);
+        translateY(5%);
 
 }
 
 
 /* =========================================================
-   INVITATION INNER
+   E&E
 ========================================================= */
 
-.invitation-inner {
+.opening-monogram {
 
-    position: absolute;
-
-    inset: 35px;
-
-    display: flex;
-
-    flex-direction: column;
-
-    align-items: center;
-
-    justify-content: center;
-
-    border: 1px solid
-        rgba(255, 255, 255, 0.48);
-
-}
-
-
-.small-title {
-
-    margin-bottom: 20px;
-
-    color: rgba(255,255,255,0.9);
-
-    font-size: 11px;
-
-    letter-spacing: 3px;
-
-}
-
-
-.invitation-inner h1 {
-
-    font-family: var(--script);
+    font-family: var(--display);
 
     font-size: clamp(
-        52px,
-        9vw,
-        76px
+        42px,
+        7vw,
+        68px
     );
 
     font-weight: 400;
 
     line-height: 1;
 
+    letter-spacing: 4px;
+
     color: #ffffff;
 
     text-shadow:
-        0 4px 20px
-        rgba(72, 98, 111, 0.15);
+        0 3px 20px
+        rgba(0,0,0,0.22);
 
 }
 
 
-.invitation-inner h1 span {
+.opening-monogram span {
+
+    margin:
+        0 5px;
 
     font-family: var(--serif);
 
-    font-size: 30px;
+    font-size: 0.55em;
 
     font-style: italic;
-
-    margin: 0 4px;
-
-}
-
-
-.small-line {
-
-    width: 55px;
-
-    height: 1px;
-
-    margin: 24px 0 18px;
-
-    background:
-        rgba(255,255,255,0.7);
-
-}
-
-
-.invitation-date {
-
-    font-family: var(--display);
-
-    font-size: 15px;
-
-    letter-spacing: 4px;
-
-    color: rgba(255,255,255,0.92);
 
 }
 
 
 /* =========================================================
-   INVITATION DECORATIONS
+   OPENING LINE
 ========================================================= */
 
-.invitation-top-decoration,
-.invitation-bottom-decoration {
+.opening-line {
 
-    position: absolute;
+    width: 42px;
 
-    left: 50%;
+    height: 1px;
 
-    width: 75px;
+    margin:
+        19px 0 16px;
 
-    height: 75px;
-
-    transform: translateX(-50%);
-
-    border: 1px solid
-        rgba(255,255,255,0.35);
-
-    border-radius: 50%;
+    background:
+        rgba(255,255,255,0.75);
 
 }
 
 
-.invitation-top-decoration {
+/* =========================================================
+   OPENING DATE
+========================================================= */
 
-    top: -40px;
+.opening-date {
+
+    font-family: var(--display);
+
+    font-size: 14px;
+
+    letter-spacing: 4px;
+
+    color: #ffffff;
+
+    text-shadow:
+        0 2px 12px
+        rgba(0,0,0,0.22);
 
 }
 
 
-.invitation-bottom-decoration {
+/* =========================================================
+   OPEN INVITATION BUTTON
+========================================================= */
 
-    bottom: -40px;
+.open-invitation-button {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 13px;
+
+    min-width: 210px;
+
+    margin-top: 34px;
+
+    padding:
+        13px 22px;
+
+    border:
+        1px solid
+        rgba(255,255,255,0.65);
+
+    border-radius: 30px;
+
+    background:
+        rgba(255,255,255,0.16);
+
+    backdrop-filter:
+        blur(10px);
+
+    color: #ffffff;
+
+    font-family: var(--serif);
+
+    font-size: 14px;
+
+    letter-spacing: 0.4px;
+
+    text-shadow:
+        0 1px 8px
+        rgba(0,0,0,0.18);
+
+    box-shadow:
+        0 10px 30px
+        rgba(0,0,0,0.08);
+
+    transition:
+        background 0.3s ease,
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
 
 }
 
+
+.open-invitation-button:hover {
+
+    background:
+        rgba(255,255,255,0.28);
+
+    transform:
+        translateY(-3px);
+
+    box-shadow:
+        0 15px 35px
+        rgba(0,0,0,0.12);
+
+}
+
+
+.button-arrow {
+
+    font-size: 17px;
+
+    transition:
+        transform 0.3s ease;
+
+}
+
+
+.open-invitation-button:hover
+.button-arrow {
+
+    transform:
+        translateX(4px);
+
+}
+
+
+/* =========================================================
+   MOBILE OPENING
+========================================================= */
+
+@media (max-width: 600px) {
+
+    .language-switcher {
+
+        top: 18px;
+
+        right: 18px;
+
+        padding:
+            8px 12px;
+
+    }
+
+
+    .language-button {
+
+        font-size: 13px;
+
+    }
+
+
+    .opening-content {
+
+        padding: 20px;
+
+        transform:
+            translateY(4%);
+
+    }
+
+
+    .opening-monogram {
+
+        font-size: 46px;
+
+        letter-spacing: 3px;
+
+    }
+
+
+    .opening-date {
+
+        font-size: 12px;
+
+        letter-spacing: 3px;
+
+    }
+
+
+    .opening-line {
+
+        width: 35px;
+
+        margin:
+            16px 0 14px;
+
+    }
+
+
+    .open-invitation-button {
+
+        min-width: 190px;
+
+        margin-top: 28px;
+
+        padding:
+            12px 18px;
+
+        font-size: 13px;
+
+    }
+
+}
+
+
+@media (max-width: 380px) {
+
+    .opening-monogram {
+
+        font-size: 42px;
+
+    }
+
+
+    .opening-date {
+
+        font-size: 11px;
+
+    }
+
+
+    .open-invitation-button {
+
+        min-width: 180px;
+
+        font-size: 12px;
+
+    }
+
+}
 
 /* =========================================================
    OPEN TEXT
