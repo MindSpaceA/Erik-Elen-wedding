@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="hy">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Erik & Elen | Wedding Invitation</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Great+Vibes&family=Noto+Serif+Armenian:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- =====================================================
+         MUSIC
+    ====================================================== -->
+
+    <audio id="weddingMusic" loop>
+        <source src="music/wedding-song.mp3" type="audio/mpeg">
+    </audio>
+
+    <button class="music-button" id="musicButton" aria-label="Music">
+        <span class="music-icon">♪</span>
+        <span class="music-text">Music</span>
+    </button>
+
+
+    <!-- =====================================================
+         OPENING SCREEN
+    ====================================================== -->
+
+    <section class="opening-screen" id="openingScreen">
+
+        <div class="opening-decoration opening-decoration-left"></div>
+        <div class="opening-decoration opening-decoration-right"></div>
+
+        <div class="invitation-wrapper">
+
+            <!-- Closed blue invitation -->
+            <button class="closed-invitation" id="openInvitation">
+
+                <div class="invitation-top-decoration"></div>
+
+                <div class="invitation-inner">
+
+                    <span class="small-title">
+                        WEDDING INVITATION
+                    </span>
+
+                    <h1>
+                        Erik
+                        <span>&</span>
+                        Elen
+                    </h1>
+
+                    <div class="small-line"></div>
+
+                    <span class="invitation-date">
+                        02 · 10 · 2026
+                    </span>
+
+                </div>
+
+                <div class="invitation-bottom-decoration"></div>
+
+            </button>
+
+            <p class="open-text">
+                Սեղմեք հրավիրատոմսը բացելու համար
+            </p>
+
+            <span class="open-arrow">↓</span>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         MAIN INVITATION
+    ====================================================== -->
+
+    <main class="main-invitation" id="mainInvitation">
+
+
+        <!-- =================================================
+             HERO / INTRODUCTION
+        ================================================== -->
+
+        <section class="hero section">
+
+            <div class="floral-decoration floral-top-left"></div>
+            <div class="floral-decoration floral-top-right"></div>
+
+            <div class="section-container">
+
+                <p class="eyebrow">
+                    Մեր սիրո պատմության նոր սկիզբը
+                </p>
+
+                <h2 class="couple-names">
+                    Erik
+                    <span>&</span>
+                    Elen
+                </h2>
+
+                <div class="hero-photo">
+                    <img
+                        src="images/couple.jpg"
+                        alt="Erik & Elen"
+                    >
+                </div>
+
+                <div class="invitation-message">
+
+                    <p>
+                        Սիրով հրավիրում ենք Ձեզ կիսելու մեզ հետ
+                    </p>
+
+                    <p>
+                        մեր կյանքի ամենագեղեցիկ օրվա
+                    </p>
+
+                    <p>
+                        ուրախությունն ու երջանկությունը։
+                    </p>
+
+                </div>
+
+                <div class="date-display">
+
+                    <span>02</span>
+
+                    <i></i>
+
+                    <span>10</span>
+
+                    <i></i>
+
+                    <span>2026</span>
+
+                </div>
+
+                <p class="date-label">
+                    Հոկտեմբերի 2
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             COUNTDOWN
+        ================================================== -->
+
+        <section class="countdown-section section">
+
+            <div class="section-container">
+
+                <p class="eyebrow">
+                    Մինչև մեր օրը
+                </p>
+
+                <h3>
+                    Սիրով սպասում ենք այս օրվան
+                </h3>
+
+                <div class="countdown" id="countdown">
+
+                    <div class="countdown-item">
+                        <strong id="days">00</strong>
+                        <span>Օր</span>
+                    </div>
+
+                    <div class="countdown-separator">
+                        :
+                    </div>
+
+                    <div class="countdown-item">
+                        <strong id="hours">00</strong>
+                        <span>Ժամ</span>
+                    </div>
+
+                    <div class="countdown-separator">
+                        :
+                    </div>
+
+                    <div class="countdown-item">
+                        <strong id="minutes">00</strong>
+                        <span>Րոպե</span>
+                    </div>
+
+                    <div class="countdown-separator">
+                        :
+                    </div>
+
+                    <div class="countdown-item">
+                        <strong id="seconds">00</strong>
+                        <span>Վայրկյան</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             DAY PROGRAM
+        ================================================== -->
+
+        <section class="program-section section">
+
+            <div class="section-container">
+
+                <p class="eyebrow">
+                    Մեր հատուկ օրը
+                </p>
+
+                <h2 class="section-title">
+                    Օրվա ծրագիր
+                </h2>
+
+                <p class="section-subtitle">
+                    Օրվա յուրաքանչյուր պահը ցանկանում ենք կիսել Ձեզ հետ։
+                </p>
+
+
+                <div class="timeline">
+
+
+                    <!-- =====================================
+                         CEREMONY
+                    ====================================== -->
+
+                    <article class="timeline-item">
+
+                        <div class="timeline-icon">
+                            <span>♡</span>
+                        </div>
+
+                        <div class="timeline-content">
+
+                            <span class="timeline-number">
+                                01
+                            </span>
+
+                            <h3>
+                                Հարսանեկան արարողություն
+                            </h3>
+
+                            <div class="timeline-time">
+                                <span>Ժամը՝</span>
+                                <strong>13:00</strong>
+                            </div>
+
+                            <h4>
+                                Հարսի տուն
+                            </h4>
+
+                            <div class="event-photo">
+                                <img
+                                    src="images/ceremony.jpg"
+                                    alt="Հարսի տուն"
+                                >
+                            </div>
+
+                            <p class="event-address">
+                                Հասցեն կավելացվի այստեղ
+                            </p>
+
+                            <a
+                                href="#"
+                                class="map-button"
+                                target="_blank"
+                                rel="noopener"
+                            >
+                                <span>⌖</span>
+                                Տեսնել քարտեզի վրա
+                            </a>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- =====================================
+                         CHURCH / WEDDING
+                    ====================================== -->
+
+                    <article class="timeline-item">
+
+                        <div class="timeline-icon">
+                            <span>♧</span>
+                        </div>
+
+                        <div class="timeline-content">
+
+                            <span class="timeline-number">
+                                02
+                            </span>
+
+                            <h3>
+                                Պսակադրություն
+                            </h3>
+
+                            <div class="timeline-time">
+                                <span>Ժամը՝</span>
+                                <strong>--:--</strong>
+                            </div>
+
+                            <h4>
+                                Եկեղեցու անունը
+                            </h4>
+
+                            <div class="event-photo">
+                                <img
+                                    src="images/church.jpg"
+                                    alt="Եկեղեցի"
+                                >
+                            </div>
+
+                            <p class="event-address">
+                                Եկեղեցու հասցեն կավելացվի այստեղ
+                            </p>
+
+                            <a
+                                href="#"
+                                class="map-button"
+                                target="_blank"
+                                rel="noopener"
+                            >
+                                <span>⌖</span>
+                                Տեսնել քարտեզի վրա
+                            </a>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- =====================================
+                         WEDDING RECEPTION
+                    ====================================== -->
+
+                    <article class="timeline-item">
+
+                        <div class="timeline-icon">
+                            <span>♢</span>
+                        </div>
+
+                        <div class="timeline-content">
+
+                            <span class="timeline-number">
+                                03
+                            </span>
+
+                            <h3>
+                                Հարսանեկան հանդիսություն
+                            </h3>
+
+                            <div class="timeline-time">
+                                <span>Ժամը՝</span>
+                                <strong>--:--</strong>
+                            </div>
+
+
+                            <!-- COUPLE PHOTO -->
+                            <div class="event-photo reception-photo">
+
+                                <img
+                                    src="images/couple.jpg"
+                                    alt="Erik & Elen"
+                                >
+
+                            </div>
+
+
+                            <h4>
+                                Ռեստորանի անունը
+                            </h4>
+
+                            <p class="event-address">
+                                Ռեստորանի հասցեն կավելացվի այստեղ
+                            </p>
+
+                            <a
+                                href="#"
+                                class="map-button"
+                                target="_blank"
+                                rel="noopener"
+                            >
+                                <span>⌖</span>
+                                Տեսնել քարտեզի վրա
+                            </a>
+
+                        </div>
+
+                    </article>
+
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             RSVP
+        ================================================== -->
+
+        <section class="rsvp-section section" id="rsvp">
+
+            <div class="section-container">
+
+                <p class="eyebrow">
+                    Ձեր ներկայությունը մեզ համար կարևոր է
+                </p>
+
+                <h2 class="section-title">
+                    Հաստատեք Ձեր ներկայությունը
+                </h2>
+
+                <p class="section-subtitle">
+
+                    Մեզ համար մեծ ուրախություն կլինի
+                    Ձեզ հետ կիսել այս առանձնահատուկ օրը։
+
+                </p>
+
+
+                <form
+                    class="rsvp-form"
+                    id="rsvpForm"
+                >
+
+
+                    <!-- SIDE -->
+
+                    <div class="form-group">
+
+                        <label>
+                            Որտե՞ղ եք ցանկանում նստել
+                        </label>
+
+                        <div class="choice-buttons">
+
+                            <button
+                                type="button"
+                                class="choice-button"
+                                data-group="side"
+                                data-value="Հարսի կողմ"
+                            >
+                                Հարսի կողմ
+                            </button>
+
+                            <button
+                                type="button"
+                                class="choice-button"
+                                data-group="side"
+                                data-value="Փեսայի կողմ"
+                            >
+                                Փեսայի կողմ
+                            </button>
+
+                        </div>
+
+                        <input
+                            type="hidden"
+                            name="side"
+                            id="sideInput"
+                        >
+
+                    </div>
+
+
+                    <!-- ATTENDANCE -->
+
+                    <div class="form-group">
+
+                        <label>
+                            Կգա՞ք մեզ հետ կիսելու այս օրը
+                        </label>
+
+                        <div class="choice-buttons">
+
+                            <button
+                                type="button"
+                                class="choice-button"
+                                data-group="attendance"
+                                data-value="Այո, սիրով կգամ"
+                            >
+                                ❤️ Այո, սիրով կգամ
+                            </button>
+
+                            <button
+                                type="button"
+                                class="choice-button"
+                                data-group="attendance"
+                                data-value="Չեմ կարող գալ"
+                            >
+                                🤍 Ցավոք, չեմ կարող գալ
+                            </button>
+
+                        </div>
+
+                        <input
+                            type="hidden"
+                            name="attendance"
+                            id="attendanceInput"
+                        >
+
+                    </div>
+
+
+                    <!-- NAME -->
+
+                    <div class="form-group">
+
+                        <label for="guestName">
+                            Անուն, ազգանուն
+                        </label>
+
+                        <input
+                            type="text"
+                            id="guestName"
+                            name="guestName"
+                            placeholder="Գրեք Ձեր անունը և ազգանունը"
+                            required
+                        >
+
+                    </div>
+
+
+                    <!-- GUEST COUNT -->
+
+                    <div class="form-group">
+
+                        <label for="guestCount">
+                            Հյուրերի թիվ
+                        </label>
+
+                        <select
+                            id="guestCount"
+                            name="guestCount"
+                        >
+
+                            <option value="">
+                                Ընտրեք
+                            </option>
+
+                            <option value="1">
+                                1
+                            </option>
+
+                            <option value="2">
+                                2
+                            </option>
+
+                            <option value="3">
+                                3
+                            </option>
+
+                            <option value="4">
+                                4
+                            </option>
+
+                            <option value="5">
+                                5
+                            </option>
+
+                            <option value="6+">
+                                6+
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- SUBMIT -->
+
+                    <button
+                        type="submit"
+                        class="submit-button"
+                    >
+                        Հաստատել ներկայությունը
+                    </button>
+
+
+                </form>
+
+
+                <!-- RSVP SUCCESS -->
+
+                <div
+                    class="rsvp-success"
+                    id="rsvpSuccess"
+                >
+
+                    <div class="success-symbol">
+                        ♡
+                    </div>
+
+                    <h3>
+                        Շնորհակալ ենք 🤍
+                    </h3>
+
+                    <p>
+                        Ձեր պատասխանը գրանցված է։
+                    </p>
+
+                    <p>
+                        Սիրով սպասում ենք Ձեզ։
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             ADD TO CALENDAR
+        ================================================== -->
+
+        <section class="calendar-section section">
+
+            <div class="section-container">
+
+                <div class="calendar-symbol">
+                    ♡
+                </div>
+
+                <p class="eyebrow">
+                    Պահպանեք այս օրը
+                </p>
+
+                <h2>
+                    02.10.2026
+                </h2>
+
+                <p>
+                    Որպեսզի մեր կարևոր օրը մնա Ձեր օրացույցում։
+                </p>
+
+                <button
+                    class="calendar-button"
+                    id="calendarButton"
+                >
+                    Ավելացնել օրացույցին
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             FINAL PHOTO / MESSAGE
+        ================================================== -->
+
+        <section class="final-section section">
+
+            <div class="floral-decoration floral-bottom-left"></div>
+            <div class="floral-decoration floral-bottom-right"></div>
+
+            <div class="section-container">
+
+                <div class="final-photo">
+
+                    <img
+                        src="images/couple.jpg"
+                        alt="Erik & Elen"
+                    >
+
+                </div>
+
+                <div class="final-message">
+
+                    <p>
+                        Սիրով սպասում ենք Ձեզ
+                    </p>
+
+                    <p>
+                        մեր կյանքի այս կարևոր
+                        ու գեղեցիկ օրը։
+                    </p>
+
+                </div>
+
+                <h2 class="final-names">
+                    Erik
+                    <span>&</span>
+                    Elen
+                </h2>
+
+                <p class="final-date">
+                    02 · 10 · 2026
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             FOOTER
+        ================================================== -->
+
+        <footer class="footer">
+
+            <p>
+                With love
+            </p>
+
+            <span>
+                Erik & Elen
+            </span>
+
+        </footer>
+
+
+    </main>
+
+
+    <!-- =====================================================
+         RSVP CONFIRMATION MODAL
+    ====================================================== -->
+
+    <div
+        class="modal"
+        id="confirmationModal"
+        aria-hidden="true"
+    >
+
+        <div class="modal-overlay"></div>
+
+        <div class="modal-content">
+
+            <button
+                class="modal-close"
+                id="modalClose"
+                aria-label="Close"
+            >
+                ×
+            </button>
+
+            <div class="modal-heart">
+                ♡
+            </div>
+
+            <h3>
+                Սիրով սպասում ենք Ձեզ
+            </h3>
+
+            <p>
+                Շնորհակալ ենք Ձեր պատասխանի համար։
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         JAVASCRIPT
+    ====================================================== -->
+
+    <script src="script.js"></script>
+
+</body>
+</html>
