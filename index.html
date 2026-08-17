@@ -12,10 +12,7 @@
 
     <title>Erik & Elen | Wedding Invitation</title>
 
-
-    <!-- =====================================================
-         GOOGLE FONTS
-    ====================================================== -->
+    <!-- GOOGLE FONTS -->
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
 
@@ -29,11 +26,6 @@
         href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Great+Vibes&family=Noto+Serif+Armenian:wght@400;500;600&family=Playfair+Display:wght@400;500;600&display=swap"
         rel="stylesheet"
     >
-
-
-    <!-- =====================================================
-         CSS
-    ====================================================== -->
 
     <link
         rel="stylesheet"
@@ -75,11 +67,24 @@
 >
 
 
-    <!-- Decorative background -->
+    <!-- =====================================================
+         OPENING IMAGE
+    ====================================================== -->
 
-    <div class="opening-decoration opening-decoration-left"></div>
+    <div class="opening-image">
 
-    <div class="opening-decoration opening-decoration-right"></div>
+        <img
+            src="images/opening.jpg"
+            alt="Erik & Elen"
+        >
+
+    </div>
+
+
+
+    <!-- IMAGE OVERLAY -->
+
+    <div class="opening-overlay"></div>
 
 
 
@@ -117,89 +122,37 @@
          OPENING CONTENT
     ====================================================== -->
 
-    <div class="invitation-wrapper">
+    <div class="opening-content">
 
 
-        <!-- =================================================
-             CLOSED BLUE INVITATION
-        ================================================== -->
+        <div class="opening-monogram">
+            E<span>&</span>E
+        </div>
+
+
+        <div class="opening-line"></div>
+
+
+        <div class="opening-date">
+            02 · 10 · 2026
+        </div>
+
 
         <button
-            class="closed-invitation"
+            class="open-invitation-button"
             id="openInvitation"
             type="button"
         >
 
+            <span data-i18n="openInvitation">
+                Բացել հրավիրատոմսը
+            </span>
 
-            <!-- Top decoration -->
-
-            <div class="invitation-top-decoration"></div>
-
-
-
-            <!-- Invitation content -->
-
-            <div class="invitation-inner">
-
-
-                <span
-                    class="small-title"
-                    data-i18n="openingTitle"
-                >
-                    ՀԱՐՍԱՆԵԿԱՆ ՀՐԱՎԻՐԱՏՈՄՍ
-                </span>
-
-
-
-                <h1>
-
-                    Erik
-
-                    <span>
-                        &
-                    </span>
-
-                     Elen
-
-                </h1>
-
-
-
-                <div class="small-line"></div>
-
-
-
-                <span class="invitation-date">
-                    02 · 10 · 2026
-                </span>
-
-
-            </div>
-
-
-
-            <!-- Bottom decoration -->
-
-            <div class="invitation-bottom-decoration"></div>
-
+            <span class="button-arrow">
+                →
+            </span>
 
         </button>
-
-
-
-        <!-- Open text -->
-
-        <p
-            class="open-text"
-            data-i18n="openInvitation"
-        >
-            Սեղմեք հրավիրատոմսը բացելու համար
-        </p>
-
-
-        <span class="open-arrow">
-            
-        </span>
 
 
     </div>
@@ -219,9 +172,7 @@
 >
 
 
-    <!-- =====================================================
-         MUSIC BUTTON
-    ====================================================== -->
+    <!-- MUSIC BUTTON -->
 
     <button
         class="music-button"
@@ -251,14 +202,11 @@
 
     <section class="hero section">
 
-
         <div class="floral-decoration floral-top-left"></div>
 
         <div class="floral-decoration floral-top-right"></div>
 
-
         <div class="section-container">
-
 
             <p
                 class="eyebrow"
@@ -266,7 +214,6 @@
             >
                 Մեր սիրո պատմության նոր սկիզբը
             </p>
-
 
 
             <h2 class="couple-names">
@@ -282,9 +229,6 @@
             </h2>
 
 
-
-            <!-- Couple photo -->
-
             <div class="hero-photo">
 
                 <img
@@ -294,9 +238,6 @@
 
             </div>
 
-
-
-            <!-- Invitation text -->
 
             <div class="invitation-message">
 
@@ -315,29 +256,19 @@
             </div>
 
 
-
-            <!-- Date -->
-
             <div class="date-display">
 
-                <span>
-                    02
-                </span>
+                <span>02</span>
 
                 <i></i>
 
-                <span>
-                    10
-                </span>
+                <span>10</span>
 
                 <i></i>
 
-                <span>
-                    2026
-                </span>
+                <span>2026</span>
 
             </div>
-
 
 
             <p
@@ -346,7 +277,6 @@
             >
                 Հոկտեմբերի 2
             </p>
-
 
         </div>
 
@@ -360,9 +290,7 @@
 
     <section class="countdown-section section">
 
-
         <div class="section-container">
-
 
             <p
                 class="eyebrow"
@@ -371,19 +299,15 @@
                 Մինչև մեր օրը
             </p>
 
-
-
             <h3 data-i18n="countdownTitle">
                 Սիրով սպասում ենք այս օրվան
             </h3>
-
 
 
             <div
                 class="countdown"
                 id="countdown"
             >
-
 
                 <div class="countdown-item">
 
@@ -398,11 +322,9 @@
                 </div>
 
 
-
                 <div class="countdown-separator">
                     :
                 </div>
-
 
 
                 <div class="countdown-item">
@@ -418,11 +340,9 @@
                 </div>
 
 
-
                 <div class="countdown-separator">
                     :
                 </div>
-
 
 
                 <div class="countdown-item">
@@ -438,11 +358,9 @@
                 </div>
 
 
-
                 <div class="countdown-separator">
                     :
                 </div>
-
 
 
                 <div class="countdown-item">
@@ -456,7 +374,6 @@
                     </span>
 
                 </div>
-
 
             </div>
 
@@ -472,9 +389,7 @@
 
     <section class="program-section section">
 
-
         <div class="section-container">
-
 
             <p
                 class="eyebrow"
@@ -483,16 +398,12 @@
                 Մեր հատուկ օրը
             </p>
 
-
-
             <h2
                 class="section-title"
                 data-i18n="programTitle"
             >
                 Օրվա ծրագիր
             </h2>
-
-
 
             <p
                 class="section-subtitle"
@@ -502,42 +413,24 @@
             </p>
 
 
-
-            <!-- =================================================
-                 TIMELINE
-            ================================================== -->
-
             <div class="timeline">
 
 
-
-                <!-- =============================================
-                     EVENT 01
-                ============================================== -->
-
                 <article class="timeline-item">
-
 
                     <div class="timeline-icon">
                         ♡
                     </div>
 
-
-
                     <div class="timeline-content">
-
 
                         <span class="timeline-number">
                             01
                         </span>
 
-
-
                         <h3 data-i18n="event1Title">
                             Հարսանեկան արարողություն
                         </h3>
-
-
 
                         <div class="timeline-time">
 
@@ -551,13 +444,9 @@
 
                         </div>
 
-
-
                         <h4 data-i18n="event1Place">
                             Հարսի տուն
                         </h4>
-
-
 
                         <div class="event-photo">
 
@@ -568,16 +457,12 @@
 
                         </div>
 
-
-
                         <p
                             class="event-address"
                             data-i18n="event1Address"
                         >
                             Հասցեն կավելացվի այստեղ
                         </p>
-
-
 
                         <a
                             href="#"
@@ -586,13 +471,14 @@
                             rel="noopener"
                             data-i18n="map"
                         >
+
                             <span>
                                 ⌖
                             </span>
 
                             Տեսնել քարտեզի վրա
-                        </a>
 
+                        </a>
 
                     </div>
 
@@ -600,33 +486,21 @@
 
 
 
-                <!-- =============================================
-                     EVENT 02
-                ============================================== -->
-
                 <article class="timeline-item">
-
 
                     <div class="timeline-icon">
                         ♧
                     </div>
 
-
-
                     <div class="timeline-content">
-
 
                         <span class="timeline-number">
                             02
                         </span>
 
-
-
                         <h3 data-i18n="event2Title">
                             Պսակադրություն
                         </h3>
-
-
 
                         <div class="timeline-time">
 
@@ -640,13 +514,9 @@
 
                         </div>
 
-
-
                         <h4 data-i18n="event2Place">
                             Եկեղեցու անունը
                         </h4>
-
-
 
                         <div class="event-photo">
 
@@ -657,16 +527,12 @@
 
                         </div>
 
-
-
                         <p
                             class="event-address"
                             data-i18n="event2Address"
                         >
                             Եկեղեցու հասցեն կավելացվի այստեղ
                         </p>
-
-
 
                         <a
                             href="#"
@@ -684,40 +550,27 @@
 
                         </a>
 
-
                     </div>
 
                 </article>
 
 
 
-                <!-- =============================================
-                     EVENT 03
-                ============================================== -->
-
                 <article class="timeline-item">
-
 
                     <div class="timeline-icon">
                         ♢
                     </div>
 
-
-
                     <div class="timeline-content">
-
 
                         <span class="timeline-number">
                             03
                         </span>
 
-
-
                         <h3 data-i18n="event3Title">
                             Հարսանեկան հանդիսություն
                         </h3>
-
-
 
                         <div class="timeline-time">
 
@@ -731,10 +584,6 @@
 
                         </div>
 
-
-
-                        <!-- COUPLE PHOTO -->
-
                         <div class="event-photo reception-photo">
 
                             <img
@@ -744,13 +593,9 @@
 
                         </div>
 
-
-
                         <h4 data-i18n="restaurantName">
                             Ռեստորանի անունը
                         </h4>
-
-
 
                         <p
                             class="event-address"
@@ -758,8 +603,6 @@
                         >
                             Ռեստորանի հասցեն կավելացվի այստեղ
                         </p>
-
-
 
                         <a
                             href="#"
@@ -776,7 +619,6 @@
                             Տեսնել քարտեզի վրա
 
                         </a>
-
 
                     </div>
 
@@ -800,9 +642,7 @@
         id="rsvp"
     >
 
-
         <div class="section-container">
-
 
             <p
                 class="eyebrow"
@@ -811,16 +651,12 @@
                 Ձեր ներկայությունը մեզ համար կարևոր է
             </p>
 
-
-
             <h2
                 class="section-title"
                 data-i18n="rsvpTitle"
             >
                 Հաստատեք Ձեր ներկայությունը
             </h2>
-
-
 
             <p
                 class="section-subtitle"
@@ -830,23 +666,16 @@
             </p>
 
 
-
             <form
                 class="rsvp-form"
                 id="rsvpForm"
             >
-
-
-
-                <!-- SIDE -->
 
                 <div class="form-group">
 
                     <label data-i18n="sideQuestion">
                         Որտե՞ղ եք ցանկանում նստել
                     </label>
-
-
 
                     <div class="choice-buttons">
 
@@ -860,8 +689,6 @@
                             Հարսի կողմ
                         </button>
 
-
-
                         <button
                             type="button"
                             class="choice-button"
@@ -874,8 +701,6 @@
 
                     </div>
 
-
-
                     <input
                         type="hidden"
                         name="side"
@@ -885,16 +710,11 @@
                 </div>
 
 
-
-                <!-- ATTENDANCE -->
-
                 <div class="form-group">
 
                     <label data-i18n="attendanceQuestion">
                         Կգա՞ք մեզ հետ կիսելու այս օրը
                     </label>
-
-
 
                     <div class="choice-buttons">
 
@@ -908,8 +728,6 @@
                             ❤️ Այո, սիրով կգամ
                         </button>
 
-
-
                         <button
                             type="button"
                             class="choice-button"
@@ -922,8 +740,6 @@
 
                     </div>
 
-
-
                     <input
                         type="hidden"
                         name="attendance"
@@ -933,9 +749,6 @@
                 </div>
 
 
-
-                <!-- NAME -->
-
                 <div class="form-group">
 
                     <label
@@ -944,8 +757,6 @@
                     >
                         Անուն, ազգանուն
                     </label>
-
-
 
                     <input
                         type="text"
@@ -960,9 +771,6 @@
                 </div>
 
 
-
-                <!-- GUEST COUNT -->
-
                 <div class="form-group">
 
                     <label
@@ -971,8 +779,6 @@
                     >
                         Հյուրերի թիվ
                     </label>
-
-
 
                     <select
                         id="guestCount"
@@ -986,37 +792,17 @@
                             Ընտրեք
                         </option>
 
-                        <option value="1">
-                            1
-                        </option>
-
-                        <option value="2">
-                            2
-                        </option>
-
-                        <option value="3">
-                            3
-                        </option>
-
-                        <option value="4">
-                            4
-                        </option>
-
-                        <option value="5">
-                            5
-                        </option>
-
-                        <option value="6+">
-                            6+
-                        </option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6+">6+</option>
 
                     </select>
 
                 </div>
 
-
-
-                <!-- SUBMIT -->
 
                 <button
                     type="submit"
@@ -1026,12 +812,8 @@
                     Հաստատել ներկայությունը
                 </button>
 
-
             </form>
 
-
-
-            <!-- RSVP SUCCESS -->
 
             <div
                 class="rsvp-success"
@@ -1056,7 +838,6 @@
 
             </div>
 
-
         </div>
 
     </section>
@@ -1069,15 +850,11 @@
 
     <section class="final-section section">
 
-
         <div class="floral-decoration floral-bottom-left"></div>
 
         <div class="floral-decoration floral-bottom-right"></div>
 
-
-
         <div class="section-container">
-
 
             <div class="final-photo">
 
@@ -1087,8 +864,6 @@
                 >
 
             </div>
-
-
 
             <div class="final-message">
 
@@ -1102,8 +877,6 @@
 
             </div>
 
-
-
             <h2 class="final-names">
 
                 Erik
@@ -1116,12 +889,9 @@
 
             </h2>
 
-
-
             <p class="final-date">
                 02 · 10 · 2026
             </p>
-
 
         </div>
 
@@ -1129,9 +899,7 @@
 
 
 
-    <!-- =====================================================
-         FOOTER
-    ====================================================== -->
+    <!-- FOOTER -->
 
     <footer class="footer">
 
@@ -1160,13 +928,9 @@
     aria-hidden="true"
 >
 
-
     <div class="modal-overlay"></div>
 
-
-
     <div class="modal-content">
-
 
         <button
             class="modal-close"
@@ -1176,24 +940,17 @@
             ×
         </button>
 
-
-
         <div class="modal-heart">
             ♡
         </div>
-
-
 
         <h3 data-i18n="modalTitle">
             Սիրով սպասում ենք Ձեզ
         </h3>
 
-
-
         <p data-i18n="modalText">
             Շնորհակալ ենք Ձեր պատասխանի համար։
         </p>
-
 
     </div>
 
@@ -1201,12 +958,7 @@
 
 
 
-<!-- =========================================================
-     JAVASCRIPT
-========================================================= -->
-
 <script src="script.js"></script>
-
 
 </body>
 
