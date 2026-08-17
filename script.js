@@ -1,6 +1,6 @@
 /* =========================================================
-   ERIK & ELEN WEDDING INVITATION
-   JAVASCRIPT
+   ERIK & ELEN — WEDDING INVITATION
+   SCRIPT.JS
 ========================================================= */
 
 
@@ -8,20 +8,26 @@
    ELEMENTS
 ========================================================= */
 
-const openingScreen = document.getElementById("openingScreen");
-const openInvitation = document.getElementById("openInvitation");
-const mainInvitation = document.getElementById("mainInvitation");
+const openingScreen =
+    document.getElementById("openingScreen");
 
-const musicButton = document.getElementById("musicButton");
-const weddingMusic = document.getElementById("weddingMusic");
+const openInvitation =
+    document.getElementById("openInvitation");
 
-const countdownDays = document.getElementById("days");
-const countdownHours = document.getElementById("hours");
-const countdownMinutes = document.getElementById("minutes");
-const countdownSeconds = document.getElementById("seconds");
+const mainInvitation =
+    document.getElementById("mainInvitation");
 
-const rsvpForm = document.getElementById("rsvpForm");
-const rsvpSuccess = document.getElementById("rsvpSuccess");
+const musicButton =
+    document.getElementById("musicButton");
+
+const weddingMusic =
+    document.getElementById("weddingMusic");
+
+const rsvpForm =
+    document.getElementById("rsvpForm");
+
+const rsvpSuccess =
+    document.getElementById("rsvpSuccess");
 
 const confirmationModal =
     document.getElementById("confirmationModal");
@@ -29,70 +35,538 @@ const confirmationModal =
 const modalClose =
     document.getElementById("modalClose");
 
-const calendarButton =
-    document.getElementById("calendarButton");
 
 
 /* =========================================================
-   OPEN INVITATION
+   LANGUAGE SYSTEM
 ========================================================= */
 
-let invitationOpened = false;
+let currentLanguage = "hy";
 
-openInvitation.addEventListener("click", () => {
 
-    if (invitationOpened) {
+const translations = {
+
+    hy: {
+
+        openingTitle:
+            "ՀԱՐՍԱՆԵԿԱՆ ՀՐԱՎԻՐԱՏՈՄՍ",
+
+        openInvitation:
+            "Սեղմեք հրավիրատոմսը բացելու համար",
+
+        music:
+            "Երաժշտություն",
+
+        heroEyebrow:
+            "Մեր սիրո պատմության նոր սկիզբը",
+
+        heroText1:
+            "Սիրով հրավիրում ենք Ձեզ կիսելու մեզ հետ",
+
+        heroText2:
+            "մեր կյանքի ամենագեղեցիկ օրվա",
+
+        heroText3:
+            "ուրախությունն ու երջանկությունը։",
+
+        dateLabel:
+            "Հոկտեմբերի 2",
+
+        countdownEyebrow:
+            "Մինչև մեր օրը",
+
+        countdownTitle:
+            "Սիրով սպասում ենք այս օրվան",
+
+        days:
+            "Օր",
+
+        hours:
+            "Ժամ",
+
+        minutes:
+            "Րոպե",
+
+        seconds:
+            "Վայրկյան",
+
+        programEyebrow:
+            "Մեր հատուկ օրը",
+
+        programTitle:
+            "Օրվա ծրագիր",
+
+        programSubtitle:
+            "Օրվա յուրաքանչյուր պահը ցանկանում ենք կիսել Ձեզ հետ։",
+
+        event1Title:
+            "Հարսանեկան արարողություն",
+
+        time:
+            "Ժամը՝",
+
+        event1Place:
+            "Հարսի տուն",
+
+        event1Address:
+            "Հասցեն կավելացվի այստեղ",
+
+        event2Title:
+            "Պսակադրություն",
+
+        event2Place:
+            "Եկեղեցու անունը",
+
+        event2Address:
+            "Եկեղեցու հասցեն կավելացվի այստեղ",
+
+        event3Title:
+            "Հարսանեկան հանդիսություն",
+
+        restaurantName:
+            "Ռեստորանի անունը",
+
+        restaurantAddress:
+            "Ռեստորանի հասցեն կավելացվի այստեղ",
+
+        map:
+            "Տեսնել քարտեզի վրա",
+
+        rsvpEyebrow:
+            "Ձեր ներկայությունը մեզ համար կարևոր է",
+
+        rsvpTitle:
+            "Հաստատեք Ձեր ներկայությունը",
+
+        rsvpSubtitle:
+            "Մեզ համար մեծ ուրախություն կլինի Ձեզ հետ կիսել այս առանձնահատուկ օրը։",
+
+        sideQuestion:
+            "Որտե՞ղ եք ցանկանում նստել",
+
+        attendanceQuestion:
+            "Կգա՞ք մեզ հետ կիսելու այս օրը",
+
+        nameLabel:
+            "Անուն, ազգանուն",
+
+        guestCountLabel:
+            "Հյուրերի թիվ",
+
+        select:
+            "Ընտրեք",
+
+        submit:
+            "Հաստատել ներկայությունը",
+
+        successTitle:
+            "Շնորհակալ ենք 🤍",
+
+        successText1:
+            "Ձեր պատասխանը գրանցված է։",
+
+        successText2:
+            "Սիրով սպասում ենք Ձեզ։",
+
+        finalText1:
+            "Սիրով սպասում ենք Ձեզ",
+
+        finalText2:
+            "մեր կյանքի այս կարևոր ու գեղեցիկ օրը։",
+
+        footerText:
+            "Սիրով",
+
+        modalTitle:
+            "Սիրով սպասում ենք Ձեզ",
+
+        modalText:
+            "Շնորհակալ ենք Ձեր պատասխանի համար։"
+
+    },
+
+
+    ru: {
+
+        openingTitle:
+            "СВАДЕБНОЕ ПРИГЛАШЕНИЕ",
+
+        openInvitation:
+            "Нажмите на приглашение, чтобы открыть",
+
+        music:
+            "Музыка",
+
+        heroEyebrow:
+            "Новое начало нашей истории любви",
+
+        heroText1:
+            "С любовью приглашаем Вас разделить с нами",
+
+        heroText2:
+            "радость самого прекрасного дня",
+
+        heroText3:
+            "в нашей жизни.",
+
+        dateLabel:
+            "2 октября",
+
+        countdownEyebrow:
+            "До нашего дня",
+
+        countdownTitle:
+            "С любовью ждём этот день",
+
+        days:
+            "Дней",
+
+        hours:
+            "Часов",
+
+        minutes:
+            "Минут",
+
+        seconds:
+            "Секунд",
+
+        programEyebrow:
+            "Наш особенный день",
+
+        programTitle:
+            "Программа дня",
+
+        programSubtitle:
+            "Мы хотим разделить с Вами каждый момент этого особенного дня.",
+
+        event1Title:
+            "Свадебная церемония",
+
+        time:
+            "Время:",
+
+        event1Place:
+            "Дом невесты",
+
+        event1Address:
+            "Адрес будет добавлен здесь",
+
+        event2Title:
+            "Венчание",
+
+        event2Place:
+            "Название церкви",
+
+        event2Address:
+            "Адрес церкви будет добавлен здесь",
+
+        event3Title:
+            "Свадебное торжество",
+
+        restaurantName:
+            "Название ресторана",
+
+        restaurantAddress:
+            "Адрес ресторана будет добавлен здесь",
+
+        map:
+            "Посмотреть на карте",
+
+        rsvpEyebrow:
+            "Ваше присутствие очень важно для нас",
+
+        rsvpTitle:
+            "Подтвердите Ваше присутствие",
+
+        rsvpSubtitle:
+            "Для нас будет большой радостью разделить с Вами этот особенный день.",
+
+        sideQuestion:
+            "С какой стороны Вы будете сидеть?",
+
+        attendanceQuestion:
+            "Придёте ли Вы разделить с нами этот день?",
+
+        nameLabel:
+            "Имя, фамилия",
+
+        guestCountLabel:
+            "Количество гостей",
+
+        select:
+            "Выберите",
+
+        submit:
+            "Подтвердить присутствие",
+
+        successTitle:
+            "Спасибо 🤍",
+
+        successText1:
+            "Ваш ответ принят.",
+
+        successText2:
+            "Мы с любовью ждём Вас.",
+
+        finalText1:
+            "С любовью ждём Вас",
+
+        finalText2:
+            "в этот важный и прекрасный день нашей жизни.",
+
+        footerText:
+            "С любовью",
+
+        modalTitle:
+            "Мы с любовью ждём Вас",
+
+        modalText:
+            "Спасибо за Ваш ответ."
+
+    }
+
+};
+
+
+
+/* =========================================================
+   CHANGE LANGUAGE
+========================================================= */
+
+function changeLanguage(language) {
+
+    if (!translations[language]) {
         return;
     }
 
-    invitationOpened = true;
 
-    /*
-        Small movement before disappearing.
-    */
+    currentLanguage = language;
 
-    openInvitation.style.transform =
-        "translateY(-15px) scale(0.96)";
 
-    openInvitation.style.opacity = "0";
-
-    document.querySelector(".open-text").style.opacity = "0";
-    document.querySelector(".open-arrow").style.opacity = "0";
+    document.documentElement.lang =
+        language === "hy"
+            ? "hy"
+            : "ru";
 
 
     /*
-        Wait for the opening animation.
+        Change normal text
     */
 
-    setTimeout(() => {
-
-        openingScreen.classList.add("hidden");
-
-        mainInvitation.classList.add("visible");
-
-        document.body.classList.remove("lock-scroll");
-
-        /*
-            Start music after user interaction.
-            Browser allows audio because the click
-            happened directly from the user.
-        */
-
-        playMusic();
-
-    }, 700);
+    const elements =
+        document.querySelectorAll(
+            "[data-i18n]"
+        );
 
 
-    /*
-        Start page from the top.
-    */
+    elements.forEach((element) => {
 
-    window.scrollTo({
-        top: 0,
-        behavior: "instant"
+        const key =
+            element.dataset.i18n;
+
+
+        if (
+            translations[language][key]
+        ) {
+
+            element.textContent =
+                translations[language][key];
+
+        }
+
     });
 
-});
+
+    /*
+        Change placeholders
+    */
+
+    const placeholderElements =
+        document.querySelectorAll(
+            "[data-placeholder-hy]"
+        );
+
+
+    placeholderElements.forEach(
+        (element) => {
+
+            if (language === "hy") {
+
+                element.placeholder =
+                    element.dataset.placeholderHy;
+
+            } else {
+
+                element.placeholder =
+                    element.dataset.placeholderRu;
+
+            }
+
+        }
+    );
+
+
+    /*
+        Change RSVP choice buttons
+    */
+
+    const choiceButtons =
+        document.querySelectorAll(
+            ".choice-button"
+        );
+
+
+    choiceButtons.forEach(
+        (button) => {
+
+            const value =
+                language === "hy"
+                    ? button.dataset.valueHy
+                    : button.dataset.valueRu;
+
+
+            if (button.dataset.group === "side") {
+
+                button.textContent =
+                    value;
+
+            }
+
+
+            if (
+                button.dataset.group ===
+                "attendance"
+            ) {
+
+                /*
+                    Keep heart icon.
+                */
+
+                if (
+                    button.dataset.valueHy
+                        .startsWith("Այո") ||
+                    button.dataset.valueRu
+                        .startsWith("Да")
+                ) {
+
+                    button.textContent =
+                        language === "hy"
+                            ? "❤️ Այո, սիրով կգամ"
+                            : "❤️ Да, с радостью приду";
+
+                } else {
+
+                    button.textContent =
+                        language === "hy"
+                            ? "🤍 Ցավոք, չեմ կարող գալ"
+                            : "🤍 К сожалению, не смогу прийти";
+
+                }
+
+            }
+
+        }
+    );
+
+
+    /*
+        Active language button
+    */
+
+    const languageButtons =
+        document.querySelectorAll(
+            ".language-button"
+        );
+
+
+    languageButtons.forEach(
+        (button) => {
+
+            button.classList.toggle(
+                "active",
+                button.dataset.language ===
+                    language
+            );
+
+        }
+    );
+
+
+    /*
+        Keep already selected RSVP
+        values after language change.
+    */
+
+    updateSelectedValues();
+
+
+    /*
+        Save language locally.
+    */
+
+    localStorage.setItem(
+        "weddingLanguage",
+        language
+    );
+
+}
+
+
+
+/* =========================================================
+   LANGUAGE BUTTONS
+========================================================= */
+
+const languageButtons =
+    document.querySelectorAll(
+        ".language-button"
+    );
+
+
+languageButtons.forEach(
+    (button) => {
+
+        button.addEventListener(
+            "click",
+            () => {
+
+                changeLanguage(
+                    button.dataset.language
+                );
+
+            }
+        );
+
+    }
+);
+
+
+
+/* =========================================================
+   LOAD SAVED LANGUAGE
+========================================================= */
+
+const savedLanguage =
+    localStorage.getItem(
+        "weddingLanguage"
+    );
+
+
+if (
+    savedLanguage &&
+    translations[savedLanguage]
+) {
+
+    changeLanguage(
+        savedLanguage
+    );
+
+} else {
+
+    changeLanguage("hy");
+
+}
+
 
 
 /* =========================================================
@@ -101,67 +575,230 @@ openInvitation.addEventListener("click", () => {
 
 let musicPlaying = false;
 
-function playMusic() {
+
+
+function startMusic() {
 
     if (!weddingMusic) {
         return;
     }
 
-    weddingMusic
-        .play()
-        .then(() => {
 
-            musicPlaying = true;
+    /*
+        Start the selected wedding song.
+    */
 
-            musicButton.classList.add("active");
+    weddingMusic.volume = 0.55;
 
-            musicButton.querySelector(".music-icon").textContent = "❚❚";
 
-        })
-        .catch(() => {
+    const playPromise =
+        weddingMusic.play();
 
-            /*
-                If browser blocks autoplay,
-                user can press music button manually.
-            */
 
-            musicPlaying = false;
+    if (
+        playPromise !== undefined
+    ) {
 
-        });
+        playPromise
+            .then(() => {
+
+                musicPlaying = true;
+
+                musicButton.classList.add(
+                    "active"
+                );
+
+                const icon =
+                    musicButton.querySelector(
+                        ".music-icon"
+                    );
+
+                if (icon) {
+
+                    icon.textContent =
+                        "❚❚";
+
+                }
+
+            })
+            .catch(() => {
+
+                /*
+                    Some browsers may still
+                    block audio.
+
+                    The music button remains
+                    available for manual start.
+                */
+
+                musicPlaying = false;
+
+            });
+
+    }
 
 }
 
 
-function pauseMusic() {
+
+function stopMusic() {
 
     if (!weddingMusic) {
         return;
     }
+
 
     weddingMusic.pause();
 
     musicPlaying = false;
 
-    musicButton.classList.remove("active");
+    musicButton.classList.remove(
+        "active"
+    );
 
-    musicButton.querySelector(".music-icon").textContent = "♪";
+
+    const icon =
+        musicButton.querySelector(
+            ".music-icon"
+        );
+
+
+    if (icon) {
+
+        icon.textContent =
+            "♪";
+
+    }
 
 }
 
 
-musicButton.addEventListener("click", () => {
 
-    if (musicPlaying) {
+/* =========================================================
+   OPEN INVITATION + START MUSIC
+========================================================= */
 
-        pauseMusic();
+let invitationOpened = false;
 
-    } else {
 
-        playMusic();
+openInvitation.addEventListener(
+    "click",
+    () => {
+
+        if (invitationOpened) {
+            return;
+        }
+
+
+        invitationOpened = true;
+
+
+        /*
+            IMPORTANT:
+            Music starts directly from this
+            user click.
+        */
+
+        startMusic();
+
+
+        /*
+            Opening animation
+        */
+
+        openInvitation.style.transform =
+            "translateY(-15px) scale(0.96)";
+
+
+        openInvitation.style.opacity =
+            "0";
+
+
+        const openText =
+            document.querySelector(
+                ".open-text"
+            );
+
+
+        const openArrow =
+            document.querySelector(
+                ".open-arrow"
+            );
+
+
+        if (openText) {
+
+            openText.style.opacity =
+                "0";
+
+        }
+
+
+        if (openArrow) {
+
+            openArrow.style.opacity =
+                "0";
+
+        }
+
+
+        /*
+            Show invitation
+        */
+
+        setTimeout(
+            () => {
+
+                openingScreen.classList.add(
+                    "hidden"
+                );
+
+
+                mainInvitation.classList.add(
+                    "visible"
+                );
+
+
+                document.body.classList.remove(
+                    "lock-scroll"
+                );
+
+
+                window.scrollTo({
+                    top: 0,
+                    behavior: "instant"
+                });
+
+            },
+            700
+        );
 
     }
+);
 
-});
+
+
+/* =========================================================
+   MUSIC BUTTON
+========================================================= */
+
+musicButton.addEventListener(
+    "click",
+    () => {
+
+        if (musicPlaying) {
+
+            stopMusic();
+
+        } else {
+
+            startMusic();
+
+        }
+
+    }
+);
+
 
 
 /* =========================================================
@@ -169,96 +806,170 @@ musicButton.addEventListener("click", () => {
 ========================================================= */
 
 const weddingDate =
-    new Date("October 2, 2026 13:00:00").getTime();
+    new Date(
+        "October 2, 2026 13:00:00"
+    ).getTime();
+
+
+function formatNumber(number) {
+
+    return String(number)
+        .padStart(2, "0");
+
+}
+
 
 
 function updateCountdown() {
 
-    const now = new Date().getTime();
+    const now =
+        new Date().getTime();
+
 
     const difference =
         weddingDate - now;
 
 
-    /*
-        Wedding date has arrived.
-    */
+    const days =
+        document.getElementById(
+            "days"
+        );
 
-    if (difference <= 0) {
 
-        countdownDays.textContent = "00";
-        countdownHours.textContent = "00";
-        countdownMinutes.textContent = "00";
-        countdownSeconds.textContent = "00";
+    const hours =
+        document.getElementById(
+            "hours"
+        );
+
+
+    const minutes =
+        document.getElementById(
+            "minutes"
+        );
+
+
+    const seconds =
+        document.getElementById(
+            "seconds"
+        );
+
+
+    if (
+        !days ||
+        !hours ||
+        !minutes ||
+        !seconds
+    ) {
 
         return;
 
     }
 
 
-    const days =
+    if (difference <= 0) {
+
+        days.textContent = "00";
+
+        hours.textContent = "00";
+
+        minutes.textContent = "00";
+
+        seconds.textContent = "00";
+
+        return;
+
+    }
+
+
+    const daysValue =
         Math.floor(
             difference /
-            (1000 * 60 * 60 * 24)
+            (
+                1000 *
+                60 *
+                60 *
+                24
+            )
         );
 
 
-    const hours =
+    const hoursValue =
         Math.floor(
-            (difference %
-                (1000 * 60 * 60 * 24)) /
-            (1000 * 60 * 60)
+            (
+                difference %
+                (
+                    1000 *
+                    60 *
+                    60 *
+                    24
+                )
+            ) /
+            (
+                1000 *
+                60 *
+                60
+            )
         );
 
 
-    const minutes =
+    const minutesValue =
         Math.floor(
-            (difference %
-                (1000 * 60 * 60)) /
-            (1000 * 60)
+            (
+                difference %
+                (
+                    1000 *
+                    60 *
+                    60
+                )
+            ) /
+            (
+                1000 *
+                60
+            )
         );
 
 
-    const seconds =
+    const secondsValue =
         Math.floor(
-            (difference %
-                (1000 * 60)) /
+            (
+                difference %
+                (
+                    1000 *
+                    60
+                )
+            ) /
             1000
         );
 
 
-    countdownDays.textContent =
-        formatNumber(days);
+    days.textContent =
+        formatNumber(
+            daysValue
+        );
 
-    countdownHours.textContent =
-        formatNumber(hours);
 
-    countdownMinutes.textContent =
-        formatNumber(minutes);
+    hours.textContent =
+        formatNumber(
+            hoursValue
+        );
 
-    countdownSeconds.textContent =
-        formatNumber(seconds);
+
+    minutes.textContent =
+        formatNumber(
+            minutesValue
+        );
+
+
+    seconds.textContent =
+        formatNumber(
+            secondsValue
+        );
 
 }
 
-
-function formatNumber(number) {
-
-    return String(number).padStart(2, "0");
-
-}
-
-
-/*
-    Run immediately.
-*/
 
 updateCountdown();
 
-
-/*
-    Update every second.
-*/
 
 setInterval(
     updateCountdown,
@@ -266,192 +977,307 @@ setInterval(
 );
 
 
+
 /* =========================================================
    RSVP CHOICES
 ========================================================= */
 
 const choiceButtons =
-    document.querySelectorAll(".choice-button");
+    document.querySelectorAll(
+        ".choice-button"
+    );
 
 
-choiceButtons.forEach((button) => {
+choiceButtons.forEach(
+    (button) => {
 
-    button.addEventListener("click", () => {
+        button.addEventListener(
+            "click",
+            () => {
 
-        const group =
-            button.dataset.group;
-
-        const value =
-            button.dataset.value;
+                const group =
+                    button.dataset.group;
 
 
-        /*
-            Remove selected state
-            from buttons in same group.
-        */
+                /*
+                    Remove selection
+                    from same group.
+                */
 
-        choiceButtons.forEach((otherButton) => {
+                choiceButtons.forEach(
+                    (otherButton) => {
 
-            if (
-                otherButton.dataset.group === group
-            ) {
+                        if (
+                            otherButton.dataset.group ===
+                            group
+                        ) {
 
-                otherButton.classList.remove(
+                            otherButton.classList.remove(
+                                "selected"
+                            );
+
+                        }
+
+                    }
+                );
+
+
+                /*
+                    Select current button.
+                */
+
+                button.classList.add(
                     "selected"
                 );
 
+
+                /*
+                    Save selected value.
+                */
+
+                if (
+                    group === "side"
+                ) {
+
+                    document.getElementById(
+                        "sideInput"
+                    ).value =
+                        currentLanguage === "hy"
+                            ? button.dataset.valueHy
+                            : button.dataset.valueRu;
+
+                }
+
+
+                if (
+                    group === "attendance"
+                ) {
+
+                    document.getElementById(
+                        "attendanceInput"
+                    ).value =
+                        currentLanguage === "hy"
+                            ? button.dataset.valueHy
+                            : button.dataset.valueRu;
+
+                }
+
+            }
+        );
+
+    }
+);
+
+
+
+/* =========================================================
+   UPDATE SELECTED RSVP VALUES
+========================================================= */
+
+function updateSelectedValues() {
+
+    const selectedButtons =
+        document.querySelectorAll(
+            ".choice-button.selected"
+        );
+
+
+    selectedButtons.forEach(
+        (button) => {
+
+            const group =
+                button.dataset.group;
+
+
+            const input =
+                group === "side"
+                    ? document.getElementById(
+                        "sideInput"
+                    )
+                    : document.getElementById(
+                        "attendanceInput"
+                    );
+
+
+            if (!input) {
+                return;
             }
 
-        });
 
-
-        /*
-            Select clicked button.
-        */
-
-        button.classList.add("selected");
-
-
-        /*
-            Save value to hidden input.
-        */
-
-        if (group === "side") {
-
-            document.getElementById(
-                "sideInput"
-            ).value = value;
+            input.value =
+                currentLanguage === "hy"
+                    ? button.dataset.valueHy
+                    : button.dataset.valueRu;
 
         }
+    );
 
+}
 
-        if (group === "attendance") {
-
-            document.getElementById(
-                "attendanceInput"
-            ).value = value;
-
-        }
-
-    });
-
-});
 
 
 /* =========================================================
    RSVP FORM
 ========================================================= */
 
-rsvpForm.addEventListener("submit", (event) => {
+rsvpForm.addEventListener(
+    "submit",
+    (event) => {
 
-    event.preventDefault();
-
-
-    const guestName =
-        document.getElementById(
-            "guestName"
-        ).value.trim();
+        event.preventDefault();
 
 
-    const guestCount =
-        document.getElementById(
-            "guestCount"
-        ).value;
+        const guestName =
+            document.getElementById(
+                "guestName"
+            ).value.trim();
 
 
-    const side =
-        document.getElementById(
-            "sideInput"
-        ).value;
+        const guestCount =
+            document.getElementById(
+                "guestCount"
+            ).value;
 
 
-    const attendance =
-        document.getElementById(
-            "attendanceInput"
-        ).value;
+        const side =
+            document.getElementById(
+                "sideInput"
+            ).value;
 
 
-    /*
-        Validate choices.
-    */
+        const attendance =
+            document.getElementById(
+                "attendanceInput"
+            ).value;
 
-    if (!side) {
 
-        showMessage(
-            "Խնդրում ենք ընտրել՝ Հարսի կողմ կամ Փեսայի կողմ։"
+        /*
+            Validation
+        */
+
+        if (!side) {
+
+            showMessage(
+                currentLanguage === "hy"
+                    ? "Խնդրում ենք ընտրել՝ Հարսի կողմ կամ Փեսայի կողմ։"
+                    : "Пожалуйста, выберите сторону невесты или жениха."
+            );
+
+            return;
+
+        }
+
+
+        if (!attendance) {
+
+            showMessage(
+                currentLanguage === "hy"
+                    ? "Խնդրում ենք նշել՝ կգա՞ք, թե՞ ոչ։"
+                    : "Пожалуйста, укажите, сможете ли Вы прийти."
+            );
+
+            return;
+
+        }
+
+
+        if (!guestName) {
+
+            showMessage(
+                currentLanguage === "hy"
+                    ? "Խնդրում ենք գրել Ձեր անունը և ազգանունը։"
+                    : "Пожалуйста, введите имя и фамилию."
+            );
+
+            return;
+
+        }
+
+
+        if (!guestCount) {
+
+            showMessage(
+                currentLanguage === "hy"
+                    ? "Խնդրում ենք նշել հյուրերի թիվը։"
+                    : "Пожалуйста, укажите количество гостей."
+            );
+
+            return;
+
+        }
+
+
+        /*
+            RSVP data
+        */
+
+        const rsvpData = {
+
+            name: guestName,
+
+            guests: guestCount,
+
+            side: side,
+
+            attendance: attendance,
+
+            language: currentLanguage,
+
+            submittedAt:
+                new Date().toISOString()
+
+        };
+
+
+        console.log(
+            "Wedding RSVP:",
+            rsvpData
         );
 
-        return;
 
-    }
+        /*
+            Save locally for now.
+            Later we can connect Google Sheets.
+        */
 
-
-    if (!attendance) {
-
-        showMessage(
-            "Խնդրում ենք նշել՝ կգա՞ք, թե՞ ոչ։"
+        localStorage.setItem(
+            "weddingRSVP",
+            JSON.stringify(
+                rsvpData
+            )
         );
 
-        return;
 
-    }
+        /*
+            Hide form
+        */
+
+        rsvpForm.style.display =
+            "none";
 
 
-    if (!guestName) {
+        /*
+            Show success
+        */
 
-        showMessage(
-            "Խնդրում ենք գրել Ձեր անունը և ազգանունը։"
+        rsvpSuccess.classList.add(
+            "show"
         );
 
-        return;
+
+        /*
+            Show beautiful modal
+        */
+
+        openConfirmationModal();
 
     }
+);
 
-
-    if (!guestCount) {
-
-        showMessage(
-            "Խնդրում ենք նշել հյուրերի թիվը։"
-        );
-
-        return;
-
-    }
-
-
-    /*
-        At this stage the form is valid.
-
-        Later we can connect this section
-        to Google Sheets / Formspree / backend.
-    */
-
-
-    console.log("RSVP DATA");
-
-    console.log({
-        guestName,
-        guestCount,
-        side,
-        attendance
-    });
-
-
-    /*
-        Show success.
-    */
-
-    rsvpForm.style.display = "none";
-
-    rsvpSuccess.classList.add("show");
-
-    openConfirmationModal();
-
-});
 
 
 /* =========================================================
-   SIMPLE MESSAGE
+   MESSAGE
 ========================================================= */
 
 function showMessage(message) {
@@ -461,13 +1287,17 @@ function showMessage(message) {
 }
 
 
+
 /* =========================================================
-   RSVP MODAL
+   MODAL
 ========================================================= */
 
 function openConfirmationModal() {
 
-    confirmationModal.classList.add("show");
+    confirmationModal.classList.add(
+        "show"
+    );
+
 
     confirmationModal.setAttribute(
         "aria-hidden",
@@ -477,9 +1307,13 @@ function openConfirmationModal() {
 }
 
 
+
 function closeConfirmationModal() {
 
-    confirmationModal.classList.remove("show");
+    confirmationModal.classList.remove(
+        "show"
+    );
+
 
     confirmationModal.setAttribute(
         "aria-hidden",
@@ -489,24 +1323,45 @@ function closeConfirmationModal() {
 }
 
 
+
 modalClose.addEventListener(
     "click",
     closeConfirmationModal
 );
 
 
-/*
-    Close when clicking outside modal.
-*/
 
-confirmationModal.addEventListener(
-    "click",
+/* =========================================================
+   CLOSE MODAL BY CLICKING OUTSIDE
+========================================================= */
+
+const modalOverlay =
+    document.querySelector(
+        ".modal-overlay"
+    );
+
+
+if (modalOverlay) {
+
+    modalOverlay.addEventListener(
+        "click",
+        closeConfirmationModal
+    );
+
+}
+
+
+
+/* =========================================================
+   ESCAPE KEY
+========================================================= */
+
+document.addEventListener(
+    "keydown",
     (event) => {
 
         if (
-            event.target.classList.contains(
-                "modal-overlay"
-            )
+            event.key === "Escape"
         ) {
 
             closeConfirmationModal();
@@ -516,82 +1371,6 @@ confirmationModal.addEventListener(
     }
 );
 
-
-/*
-    Escape key closes modal.
-*/
-
-document.addEventListener(
-    "keydown",
-    (event) => {
-
-        if (event.key === "Escape") {
-
-            closeConfirmationModal();
-
-        }
-
-    }
-);
-
-
-/* =========================================================
-   ADD TO CALENDAR
-========================================================= */
-
-calendarButton.addEventListener(
-    "click",
-    () => {
-
-        /*
-            Event details
-        */
-
-        const title =
-            "Erik & Elen Wedding";
-
-
-        const start =
-            "20261002T130000";
-
-
-        /*
-            Example duration:
-            6 hours.
-        */
-
-        const end =
-            "20261002T190000";
-
-
-        const details =
-            "Erik & Elen Wedding Invitation";
-
-
-        /*
-            Google Calendar URL
-        */
-
-        const googleCalendarUrl =
-            "https://calendar.google.com/calendar/render" +
-            "?action=TEMPLATE" +
-            "&text=" +
-            encodeURIComponent(title) +
-            "&dates=" +
-            start +
-            "/" +
-            end +
-            "&details=" +
-            encodeURIComponent(details);
-
-
-        window.open(
-            googleCalendarUrl,
-            "_blank"
-        );
-
-    }
-);
 
 
 /* =========================================================
@@ -600,54 +1379,54 @@ calendarButton.addEventListener(
 
 const revealElements =
     document.querySelectorAll(
-        ".section-container, .timeline-item"
+        ".timeline-item, .countdown-section .section-container, .rsvp-form, .final-photo"
     );
 
 
-/*
-    Initial state.
-*/
+revealElements.forEach(
+    (element) => {
 
-revealElements.forEach((element) => {
+        element.style.opacity =
+            "0";
 
-    element.style.opacity = "0";
+        element.style.transform =
+            "translateY(30px)";
 
-    element.style.transform =
-        "translateY(30px)";
+        element.style.transition =
+            "opacity 0.8s ease, transform 0.8s ease";
 
-    element.style.transition =
-        "opacity 0.8s ease, transform 0.8s ease";
-
-});
+    }
+);
 
 
-/*
-    Intersection Observer
-*/
 
-const observer =
+const revealObserver =
     new IntersectionObserver(
         (entries) => {
 
-            entries.forEach((entry) => {
+            entries.forEach(
+                (entry) => {
 
-                if (
-                    entry.isIntersecting
-                ) {
+                    if (
+                        entry.isIntersecting
+                    ) {
 
-                    entry.target.style.opacity =
-                        "1";
+                        entry.target.style.opacity =
+                            "1";
 
-                    entry.target.style.transform =
-                        "translateY(0)";
 
-                    observer.unobserve(
-                        entry.target
-                    );
+                        entry.target.style.transform =
+                            "translateY(0)";
+
+
+                        revealObserver.unobserve(
+                            entry.target
+                        );
+
+                    }
 
                 }
-
-            });
+            );
 
         },
         {
@@ -656,44 +1435,21 @@ const observer =
     );
 
 
-revealElements.forEach((element) => {
 
-    observer.observe(element);
+revealElements.forEach(
+    (element) => {
 
-});
+        revealObserver.observe(
+            element
+        );
 
+    }
+);
 
-/* =========================================================
-   IMAGE ERROR HANDLING
-========================================================= */
-
-const allImages =
-    document.querySelectorAll("img");
-
-
-allImages.forEach((image) => {
-
-    image.addEventListener(
-        "error",
-        () => {
-
-            image.style.background =
-                "linear-gradient(135deg, #dce9f1, #f8f8f3)";
-
-            image.style.minHeight =
-                "250px";
-
-            image.style.objectFit =
-                "cover";
-
-        }
-    );
-
-});
 
 
 /* =========================================================
-   PREVENT EMPTY MAP LINKS
+   MAP BUTTONS
 ========================================================= */
 
 const mapButtons =
@@ -702,49 +1458,72 @@ const mapButtons =
     );
 
 
-mapButtons.forEach((button) => {
+mapButtons.forEach(
+    (button) => {
 
-    button.addEventListener(
-        "click",
-        (event) => {
+        button.addEventListener(
+            "click",
+            (event) => {
 
-            if (
-                button.getAttribute("href") === "#"
-            ) {
+                const href =
+                    button.getAttribute(
+                        "href"
+                    );
 
-                event.preventDefault();
 
-                alert(
-                    "Քարտեզի հղումը հետո կավելացնենք։"
-                );
+                if (
+                    !href ||
+                    href === "#"
+                ) {
+
+                    event.preventDefault();
+
+
+                    showMessage(
+                        currentLanguage === "hy"
+                            ? "Քարտեզի հղումը հետո կավելացնենք։"
+                            : "Ссылка на карту будет добавлена позже."
+                    );
+
+                }
 
             }
-
-        }
-    );
-
-});
-
-
-/* =========================================================
-   PAGE VISIBILITY
-========================================================= */
-
-document.addEventListener(
-    "visibilitychange",
-    () => {
-
-        if (
-            document.hidden &&
-            musicPlaying
-        ) {
-
-            pauseMusic();
-
-        }
+        );
 
     }
 );
+
+
+
+/* =========================================================
+   IMAGE FALLBACK
+========================================================= */
+
+const images =
+    document.querySelectorAll(
+        "img"
+    );
+
+
+images.forEach(
+    (image) => {
+
+        image.addEventListener(
+            "error",
+            () => {
+
+                image.style.background =
+                    "linear-gradient(135deg, #dce9f0, #ffffff)";
+
+                image.style.objectFit =
+                    "cover";
+
+            }
+        );
+
+    }
+);
+
 
 
 /* =========================================================
@@ -756,24 +1535,21 @@ document.body.classList.add(
 );
 
 
-/*
-    Make sure invitation is hidden
-    until the envelope is opened.
-*/
-
 mainInvitation.classList.remove(
     "visible"
 );
+
 
 openingScreen.classList.remove(
     "hidden"
 );
 
 
+
 /* =========================================================
-   CONSOLE MESSAGE
+   CONSOLE
 ========================================================= */
 
 console.log(
-    "♡ Erik & Elen Wedding Invitation loaded successfully."
+    "♡ Erik & Elen Wedding Invitation is ready."
 );
