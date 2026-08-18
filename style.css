@@ -545,8 +545,10 @@ a {
 .hero {
     min-height: 100vh;
     display: flex;
+    flex-direction: column; /* Ապահովում է element-ների ճիշտ հերթականությունը վերևից ներքև */
     align-items: center;
     justify-content: center;
+    padding: 60px 20px; /* Ավելացվել է padding վերևից ու ներքևից */
     background:
         radial-gradient(
             circle at 50% 25%,
@@ -558,7 +560,7 @@ a {
 
 .hero-photo {
     width: min(450px, 90vw);
-    margin: 40px auto 35px;
+    margin: 20px auto 50px; /* Ներքևի margin-ը մեծացրել ենք (35px -> 50px), որ անունները ավելի իջնեն */
     padding: 10px;
     background: rgba(255,255,255,0.85);
     border: 1px solid rgba(142,168,179,0.20);
@@ -568,6 +570,7 @@ a {
 .hero-photo img {
     aspect-ratio: 0.82;
     object-fit: cover;
+    width: 100%; /* Ապահովում է նկարի ճիշտ չափը */
 }
 
 .couple-names {
@@ -575,7 +578,10 @@ a {
     font-family: var(--script);
     font-size: clamp(65px, 11vw, 110px);
     font-weight: 400;
-    line-height: 1;
+    line-height: 1.2; /* 1-ից սարքեցինք 1.2, որպեսզի տառերի ծայրերը չկտրվեն ու չսեղմվեն */
+    margin-top: 15px; /* Ավելացվել է վերևի հեռավորություն */
+    margin-bottom: 25px; /* Հեռավորություն հաջորդ տեքստից */
+    text-align: center;
 }
 
 .couple-names span {
@@ -591,6 +597,7 @@ a {
     color: var(--text);
     font-size: 20px;
     line-height: 1.65;
+    text-align: center;
 }
 
 .invitation-message p {
@@ -623,6 +630,7 @@ a {
     color: var(--blue-dark);
     font-size: 14px;
     letter-spacing: 2px;
+    text-align: center;
 }
 
 /* =========================================================
