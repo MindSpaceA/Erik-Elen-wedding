@@ -1,1213 +1,1498 @@
+```html
 <!DOCTYPE html>
 <html lang="hy">
-
 <head>
-
     <meta charset="UTF-8">
-
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Erik & Elen | Wedding Invitation</title>
-
-
-    <!-- =====================================================
-         GOOGLE FONTS
-    ====================================================== -->
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Great+Vibes&family=Noto+Serif+Armenian:wght@400;500;600&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    <link
-        rel="preconnect"
-        href="https://fonts.gstatic.com"
-        crossorigin
-    >
+        :root {
+            --color-bg: #fdfaf6;
+            --color-cream: #f5f0e8;
+            --color-gold: #c9a961;
+            --color-gold-light: #e8d5a3;
+            --color-dark: #2c2416;
+            --color-text: #4a3f2f;
+            --color-text-light: #7a6f5f;
+            --color-accent: #d4b896;
+            --color-white: #ffffff;
+            --font-serif: 'Cormorant Garamond', 'Noto Serif Armenian', serif;
+            --font-script: 'Great Vibes', cursive;
+            --font-display: 'Playfair Display', serif;
+        }
 
-    <link
-        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Great+Vibes&family=Noto+Serif+Armenian:wght@400;500;600&family=Playfair+Display:wght@400;500;600&display=swap"
-        rel="stylesheet"
-    >
+        html {
+            scroll-behavior: smooth;
+        }
 
+        body {
+            font-family: var(--font-serif);
+            background: var(--color-bg);
+            color: var(--color-text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
 
-    <!-- =====================================================
-         CSS
-    ====================================================== -->
+        body.lock-scroll {
+            overflow: hidden;
+            height: 100vh;
+        }
 
-    <link
-        rel="stylesheet"
-        href="style.css"
-    >
+        /* =====================================================
+           OPENING SCREEN
+        ====================================================== */
+        .opening-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #fdfaf6 0%, #f5f0e8 50%, #ede4d3 100%);
+            transition: opacity 1.2s ease, transform 1.2s ease;
+        }
 
+        .opening-screen.hidden {
+            opacity: 0;
+            transform: scale(1.05);
+            pointer-events: none;
+        }
+
+        .opening-particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .opening-particles span {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: var(--color-gold-light);
+            border-radius: 50%;
+            opacity: 0;
+            animation: particleFloat 8s infinite ease-in-out;
+        }
+
+        .opening-particles span:nth-child(1) { left: 10%; top: 20%; animation-delay: 0s; }
+        .opening-particles span:nth-child(2) { left: 25%; top: 60%; animation-delay: 1s; }
+        .opening-particles span:nth-child(3) { left: 40%; top: 30%; animation-delay: 2s; }
+        .opening-particles span:nth-child(4) { left: 55%; top: 70%; animation-delay: 3s; }
+        .opening-particles span:nth-child(5) { left: 70%; top: 15%; animation-delay: 4s; }
+        .opening-particles span:nth-child(6) { left: 85%; top: 50%; animation-delay: 5s; }
+        .opening-particles span:nth-child(7) { left: 15%; top: 80%; animation-delay: 6s; }
+        .opening-particles span:nth-child(8) { left: 60%; top: 45%; animation-delay: 7s; }
+        .opening-particles span:nth-child(9) { left: 35%; top: 85%; animation-delay: 0.5s; }
+        .opening-particles span:nth-child(10) { left: 80%; top: 25%; animation-delay: 1.5s; }
+        .opening-particles span:nth-child(11) { left: 50%; top: 10%; animation-delay: 2.5s; }
+        .opening-particles span:nth-child(12) { left: 90%; top: 75%; animation-delay: 3.5s; }
+
+        @keyframes particleFloat {
+            0%, 100% { opacity: 0; transform: translateY(0) scale(0.5); }
+            25% { opacity: 0.8; }
+            50% { opacity: 0.4; transform: translateY(-40px) scale(1); }
+            75% { opacity: 0.6; }
+        }
+
+        .opening-image {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -55%);
+            z-index: 1;
+        }
+
+        .opening-image-frame {
+            width: 220px;
+            height: 220px;
+            border-radius: 50%;
+            padding: 6px;
+            background: linear-gradient(135deg, var(--color-gold), var(--color-gold-light));
+            box-shadow: 0 20px 60px rgba(201, 169, 97, 0.3);
+            animation: frameGlow 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes frameGlow {
+            from { box-shadow: 0 20px 60px rgba(201, 169, 97, 0.3); }
+            to { box-shadow: 0 20px 80px rgba(201, 169, 97, 0.5); }
+        }
+
+        .opening-image-inner {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 3px solid var(--color-bg);
+        }
+
+        .opening-image-inner img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .opening-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(ellipse at center, transparent 30%, rgba(253, 250, 246, 0.4) 70%);
+            pointer-events: none;
+        }
+
+        .language-switcher {
+            position: absolute;
+            top: 24px;
+            right: 24px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            z-index: 10;
+        }
+
+        .language-button {
+            background: none;
+            border: none;
+            font-family: var(--font-serif);
+            font-size: 0.85rem;
+            color: var(--color-text-light);
+            cursor: pointer;
+            padding: 4px 8px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .language-button.active {
+            color: var(--color-gold);
+            font-weight: 600;
+        }
+
+        .language-button:hover {
+            color: var(--color-gold);
+        }
+
+        .language-divider {
+            color: var(--color-accent);
+            font-size: 0.8rem;
+        }
+
+        .opening-content {
+            position: absolute;
+            bottom: 12%;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            z-index: 5;
+            width: 90%;
+            max-width: 400px;
+        }
+
+        .opening-text-group {
+            margin-bottom: 32px;
+        }
+
+        .opening-monogram {
+            font-family: var(--font-script);
+            font-size: 3rem;
+            color: var(--color-gold);
+            margin-bottom: 12px;
+        }
+
+        .opening-monogram span {
+            font-size: 1.8rem;
+            margin: 0 8px;
+            color: var(--color-accent);
+        }
+
+        .opening-line {
+            width: 60px;
+            height: 1px;
+            background: var(--color-gold);
+            margin: 16px auto;
+        }
+
+        .opening-date {
+            font-family: var(--font-display);
+            font-size: 1.1rem;
+            color: var(--color-text-light);
+            letter-spacing: 3px;
+        }
+
+        .open-invitation-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 36px;
+            background: linear-gradient(135deg, var(--color-gold), #b8944f);
+            color: var(--color-white);
+            border: none;
+            border-radius: 50px;
+            font-family: var(--font-serif);
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            box-shadow: 0 8px 30px rgba(201, 169, 97, 0.4);
+            letter-spacing: 0.5px;
+        }
+
+        .open-invitation-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 40px rgba(201, 169, 97, 0.6);
+        }
+
+        .open-invitation-button:active {
+            transform: translateY(0);
+        }
+
+        .button-arrow {
+            font-size: 1.2rem;
+            transition: transform 0.3s ease;
+        }
+
+        .open-invitation-button:hover .button-arrow {
+            transform: translateX(4px);
+        }
+
+        /* =====================================================
+           MAIN INVITATION
+        ====================================================== */
+        .main-invitation {
+            opacity: 0;
+            transition: opacity 1s ease 0.5s;
+        }
+
+        .main-invitation.visible {
+            opacity: 1;
+        }
+
+        .section {
+            padding: 80px 20px;
+        }
+
+        .section-container {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .eyebrow {
+            font-family: var(--font-serif);
+            font-size: 0.9rem;
+            color: var(--color-gold);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+            font-weight: 500;
+        }
+
+        .section-title {
+            font-family: var(--font-display);
+            font-size: 2rem;
+            color: var(--color-dark);
+            margin-bottom: 12px;
+            font-weight: 500;
+        }
+
+        .section-subtitle {
+            font-size: 1rem;
+            color: var(--color-text-light);
+            margin-bottom: 40px;
+            font-weight: 300;
+        }
+
+        /* =====================================================
+           HERO
+        ====================================================== */
+        .hero {
+            position: relative;
+            padding-top: 60px;
+        }
+
+        .floral-decoration {
+            position: absolute;
+            width: 120px;
+            height: 120px;
+            opacity: 0.15;
+            pointer-events: none;
+        }
+
+        .floral-top-left {
+            top: 20px;
+            left: 20px;
+            background: radial-gradient(circle at 30% 30%, var(--color-gold) 0%, transparent 60%);
+            border-radius: 0 80% 0 80%;
+        }
+
+        .floral-top-right {
+            top: 20px;
+            right: 20px;
+            background: radial-gradient(circle at 70% 30%, var(--color-gold) 0%, transparent 60%);
+            border-radius: 80% 0 80% 0;
+        }
+
+        .floral-bottom-left {
+            bottom: 20px;
+            left: 20px;
+            background: radial-gradient(circle at 30% 70%, var(--color-gold) 0%, transparent 60%);
+            border-radius: 0 80% 0 80%;
+        }
+
+        .floral-bottom-right {
+            bottom: 20px;
+            right: 20px;
+            background: radial-gradient(circle at 70% 70%, var(--color-gold) 0%, transparent 60%);
+            border-radius: 80% 0 80% 0;
+        }
+
+        .couple-names {
+            font-family: var(--font-script);
+            font-size: 3.5rem;
+            color: var(--color-dark);
+            margin-bottom: 30px;
+        }
+
+        .couple-names span {
+            font-size: 2rem;
+            color: var(--color-gold);
+            margin: 0 10px;
+        }
+
+        .hero-photo {
+            width: 200px;
+            height: 200px;
+            margin: 0 auto 30px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 4px solid var(--color-gold-light);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .hero-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .invitation-message {
+            margin-bottom: 30px;
+        }
+
+        .invitation-message p {
+            font-size: 1.15rem;
+            color: var(--color-text);
+            font-weight: 300;
+            line-height: 1.8;
+        }
+
+        .date-display {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+
+        .date-display span {
+            font-family: var(--font-display);
+            font-size: 2rem;
+            color: var(--color-dark);
+            font-weight: 600;
+        }
+
+        .date-display i {
+            display: block;
+            width: 4px;
+            height: 4px;
+            background: var(--color-gold);
+            border-radius: 50%;
+        }
+
+        .date-label {
+            font-size: 1rem;
+            color: var(--color-text-light);
+            font-weight: 400;
+            letter-spacing: 1px;
+        }
+
+        /* =====================================================
+           COUNTDOWN
+        ====================================================== */
+        .countdown-section {
+            background: linear-gradient(180deg, var(--color-cream) 0%, var(--color-bg) 100%);
+        }
+
+        .countdown-section h3 {
+            font-family: var(--font-display);
+            font-size: 1.6rem;
+            color: var(--color-dark);
+            margin-bottom: 30px;
+            font-weight: 500;
+        }
+
+        .countdown {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .countdown-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: var(--color-white);
+            padding: 16px 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+            min-width: 70px;
+        }
+
+        .countdown-item strong {
+            font-family: var(--font-display);
+            font-size: 2rem;
+            color: var(--color-gold);
+            font-weight: 600;
+        }
+
+        .countdown-item span {
+            font-size: 0.8rem;
+            color: var(--color-text-light);
+            margin-top: 4px;
+        }
+
+        .countdown-separator {
+            font-size: 1.5rem;
+            color: var(--color-gold-light);
+            font-weight: 300;
+        }
+
+        /* =====================================================
+           PROGRAM / TIMELINE
+        ====================================================== */
+        .program-section {
+            background: var(--color-bg);
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 40px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 15px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, var(--color-gold-light), var(--color-gold), var(--color-gold-light));
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 50px;
+        }
+
+        .timeline-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .timeline-icon {
+            position: absolute;
+            left: -40px;
+            top: 0;
+            width: 32px;
+            height: 32px;
+            background: var(--color-white);
+            border: 2px solid var(--color-gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            color: var(--color-gold);
+            z-index: 2;
+        }
+
+        .timeline-content {
+            background: var(--color-white);
+            padding: 24px;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+            text-align: left;
+        }
+
+        .timeline-number {
+            font-family: var(--font-display);
+            font-size: 0.75rem;
+            color: var(--color-gold);
+            letter-spacing: 2px;
+            font-weight: 600;
+        }
+
+        .timeline-content h3 {
+            font-family: var(--font-display);
+            font-size: 1.3rem;
+            color: var(--color-dark);
+            margin: 8px 0;
+            font-weight: 500;
+        }
+
+        .timeline-time {
+            font-size: 0.9rem;
+            color: var(--color-text-light);
+            margin-bottom: 8px;
+        }
+
+        .timeline-time strong {
+            color: var(--color-dark);
+            font-weight: 600;
+        }
+
+        .timeline-content h4 {
+            font-size: 1rem;
+            color: var(--color-text);
+            font-weight: 500;
+            margin-bottom: 12px;
+        }
+
+        .event-photo {
+            width: 100%;
+            height: 160px;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 12px;
+        }
+
+        .event-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .event-address {
+            font-size: 0.9rem;
+            color: var(--color-text-light);
+            margin-bottom: 12px;
+            font-style: italic;
+        }
+
+        .map-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 16px;
+            background: var(--color-cream);
+            color: var(--color-gold);
+            text-decoration: none;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .map-button:hover {
+            background: var(--color-gold);
+            color: var(--color-white);
+        }
+
+        /* =====================================================
+           RSVP
+        ====================================================== */
+        .rsvp-section {
+            background: linear-gradient(180deg, var(--color-bg) 0%, var(--color-cream) 100%);
+        }
+
+        .rsvp-form {
+            max-width: 450px;
+            margin: 0 auto;
+            text-align: left;
+        }
+
+        .form-group {
+            margin-bottom: 28px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.95rem;
+            color: var(--color-dark);
+            margin-bottom: 10px;
+            font-weight: 500;
+        }
+
+        .choice-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .choice-button {
+            padding: 12px 20px;
+            background: var(--color-white);
+            border: 2px solid var(--color-gold-light);
+            border-radius: 10px;
+            font-family: var(--font-serif);
+            font-size: 0.95rem;
+            color: var(--color-text);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .choice-button:hover {
+            border-color: var(--color-gold);
+            background: rgba(201, 169, 97, 0.05);
+        }
+
+        .choice-button.selected {
+            background: linear-gradient(135deg, var(--color-gold), #b8944f);
+            color: var(--color-white);
+            border-color: var(--color-gold);
+            box-shadow: 0 4px 15px rgba(201, 169, 97, 0.3);
+        }
+
+        .rsvp-form input[type="text"],
+        .rsvp-form select {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid var(--color-gold-light);
+            border-radius: 10px;
+            font-family: var(--font-serif);
+            font-size: 1rem;
+            color: var(--color-text);
+            background: var(--color-white);
+            transition: border-color 0.3s ease;
+            outline: none;
+        }
+
+        .rsvp-form input[type="text"]:focus,
+        .rsvp-form select:focus {
+            border-color: var(--color-gold);
+        }
+
+        .rsvp-form input[type="text"]::placeholder {
+            color: var(--color-text-light);
+            opacity: 0.7;
+        }
+
+        .submit-button {
+            width: 100%;
+            padding: 14px 24px;
+            background: linear-gradient(135deg, var(--color-gold), #b8944f);
+            color: var(--color-white);
+            border: none;
+            border-radius: 50px;
+            font-family: var(--font-serif);
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            box-shadow: 0 8px 30px rgba(201, 169, 97, 0.3);
+            margin-top: 10px;
+        }
+
+        .submit-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 40px rgba(201, 169, 97, 0.5);
+        }
+
+        .rsvp-success {
+            display: none;
+            text-align: center;
+            padding: 40px 20px;
+            animation: fadeInUp 0.6s ease;
+        }
+
+        .rsvp-success.visible {
+            display: block;
+        }
+
+        .success-symbol {
+            font-size: 3rem;
+            color: var(--color-gold);
+            margin-bottom: 16px;
+        }
+
+        .rsvp-success h3 {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            color: var(--color-dark);
+            margin-bottom: 12px;
+        }
+
+        .rsvp-success p {
+            font-size: 1rem;
+            color: var(--color-text-light);
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* =====================================================
+           FINAL SECTION
+        ====================================================== */
+        .final-section {
+            position: relative;
+            background: linear-gradient(180deg, var(--color-cream) 0%, var(--color-bg) 100%);
+        }
+
+        .final-photo {
+            width: 160px;
+            height: 160px;
+            margin: 0 auto 30px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 4px solid var(--color-gold-light);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .final-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .final-message {
+            margin-bottom: 24px;
+        }
+
+        .final-message p {
+            font-size: 1.15rem;
+            color: var(--color-text);
+            font-weight: 300;
+            line-height: 1.8;
+        }
+
+        .final-names {
+            font-family: var(--font-script);
+            font-size: 3rem;
+            color: var(--color-dark);
+            margin-bottom: 16px;
+        }
+
+        .final-names span {
+            font-size: 1.8rem;
+            color: var(--color-gold);
+            margin: 0 8px;
+        }
+
+        .final-date {
+            font-family: var(--font-display);
+            font-size: 1.1rem;
+            color: var(--color-text-light);
+            letter-spacing: 3px;
+        }
+
+        /* =====================================================
+           FOOTER
+        ====================================================== */
+        .footer {
+            text-align: center;
+            padding: 40px 20px;
+            background: var(--color-dark);
+            color: var(--color-cream);
+        }
+
+        .footer p {
+            font-size: 0.9rem;
+            margin-bottom: 8px;
+            opacity: 0.8;
+        }
+
+        .footer span {
+            font-family: var(--font-script);
+            font-size: 1.5rem;
+            color: var(--color-gold);
+        }
+
+        /* =====================================================
+           MUSIC BUTTON
+        ====================================================== */
+        .music-button {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            z-index: 900;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 18px;
+            background: var(--color-white);
+            border: 2px solid var(--color-gold-light);
+            border-radius: 50px;
+            cursor: pointer;
+            font-family: var(--font-serif);
+            font-size: 0.85rem;
+            color: var(--color-text);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .music-button.visible {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .music-button:hover {
+            border-color: var(--color-gold);
+            box-shadow: 0 6px 25px rgba(201, 169, 97, 0.2);
+        }
+
+        .music-icon {
+            font-size: 0.8rem;
+        }
+
+        /* =====================================================
+           MODAL
+        ====================================================== */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
+        }
+
+        .modal.visible {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .modal-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(44, 36, 22, 0.6);
+            backdrop-filter: blur(4px);
+        }
+
+        .modal-content {
+            position: relative;
+            background: var(--color-white);
+            padding: 48px 36px;
+            border-radius: 20px;
+            text-align: center;
+            max-width: 360px;
+            width: 90%;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+            animation: modalPop 0.4s ease;
+        }
+
+        @keyframes modalPop {
+            from { transform: scale(0.9); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 12px;
+            right: 16px;
+            background: none;
+            border: none;
+            font-size: 1.8rem;
+            color: var(--color-text-light);
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .modal-close:hover {
+            color: var(--color-dark);
+        }
+
+        .modal-heart {
+            font-size: 2.5rem;
+            color: var(--color-gold);
+            margin-bottom: 16px;
+        }
+
+        .modal-content h3 {
+            font-family: var(--font-display);
+            font-size: 1.4rem;
+            color: var(--color-dark);
+            margin-bottom: 12px;
+        }
+
+        .modal-content p {
+            font-size: 1rem;
+            color: var(--color-text-light);
+        }
+
+        /* =====================================================
+           RESPONSIVE
+        ====================================================== */
+        @media (max-width: 480px) {
+            .opening-image-frame {
+                width: 180px;
+                height: 180px;
+            }
+
+            .opening-monogram {
+                font-size: 2.5rem;
+            }
+
+            .couple-names {
+                font-size: 2.5rem;
+            }
+
+            .final-names {
+                font-size: 2.2rem;
+            }
+
+            .countdown-item {
+                padding: 12px 14px;
+                min-width: 60px;
+            }
+
+            .countdown-item strong {
+                font-size: 1.6rem;
+            }
+
+            .timeline {
+                padding-left: 30px;
+            }
+
+            .timeline-icon {
+                left: -30px;
+                width: 28px;
+                height: 28px;
+                font-size: 0.8rem;
+            }
+
+            .section {
+                padding: 60px 16px;
+            }
+        }
+    </style>
 </head>
-
-
 <body class="lock-scroll">
-
 
 <!-- =========================================================
      WEDDING MUSIC
 ========================================================= -->
-
-<audio
-    id="weddingMusic"
-    loop
-    preload="auto"
->
-
-    <source
-        src="music/wedding-song.mp3"
-        type="audio/mpeg"
-    >
-
+<audio id="weddingMusic" loop preload="auto">
+    <source src="music/wedding-song.mp3" type="audio/mpeg">
 </audio>
-
-
 
 <!-- =========================================================
      OPENING SCREEN
 ========================================================= -->
+<section class="opening-screen" id="openingScreen">
 
-<section
-    class="opening-screen"
-    id="openingScreen"
->
-
-
-    <!-- =====================================================
-         SOFT PARTICLES
-    ====================================================== -->
-
-    <div
-        class="opening-particles"
-        aria-hidden="true"
-    >
-
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-
+    <div class="opening-particles" aria-hidden="true">
+        <span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span>
     </div>
-
-
-
-    <!-- =====================================================
-         OPENING IMAGE
-    ====================================================== -->
 
     <div class="opening-image">
-
         <div class="opening-image-frame">
-
             <div class="opening-image-inner">
-
-                <img
-                    src="https://github.com/user-attachments/assets/195591fe-006e-4753-8278-54e125d12d48"
-                    alt="Erik & Elen"
-                >
-
+                <img src="https://github.com/user-attachments/assets/195591fe-006e-4753-8278-54e125d12d48" alt="Erik & Elen">
             </div>
-
         </div>
-
     </div>
-
-
-
-    <!-- =====================================================
-         OPENING OVERLAY
-    ====================================================== -->
 
     <div class="opening-overlay"></div>
 
-
-
-    <!-- =====================================================
-         LANGUAGE SWITCHER
-    ====================================================== -->
-
     <div class="language-switcher">
-
-        <button
-            class="language-button active"
-            data-language="hy"
-            type="button"
-        >
-            Հայերեն
-        </button>
-
-        <span class="language-divider">
-            |
-        </span>
-
-        <button
-            class="language-button"
-            data-language="ru"
-            type="button"
-        >
-            Русский
-        </button>
-
+        <button class="language-button active" data-language="hy" type="button">Հayերdelays</button>
+        <span class="language-divider">|</span>
+        <button class="language-button" data-language="ru" type="button">Русский</button>
     </div>
-
-
-
-    <!-- =====================================================
-         OPENING CONTENT
-    ====================================================== -->
 
     <div class="opening-content">
-
         <div class="opening-text-group">
-
-            <div class="opening-monogram">
-                E<span>&</span>E
-            </div>
-
+            <div class="opening-monogram">E<span>&</span>E</div>
             <div class="opening-line"></div>
-
-            <div class="opening-date">
-                02 . 10 . 2026
-            </div>
-
+            <div class="opening-date">02 . 10 . 2026</div>
         </div>
-
-        <button
-            class="open-invitation-button"
-            id="openInvitation"
-            type="button"
-        >
-
-            <span data-i18n="openInvitation">
-                Բացել հրավիրատոմսը
-            </span>
-
-            <span class="button-arrow">
-                →
-            </span>
-
+        <button class="open-invitation-button" id="openInvitation" type="button">
+            <span data-i18n="openInvitation">Բացdelays հdelays delays</span>
+            <span class="button-arrow">→</span>
         </button>
-
     </div>
-
-
 </section>
-
-
 
 <!-- =========================================================
      MAIN INVITATION
 ========================================================= -->
+<main class="main-invitation" id="mainInvitation">
 
-<main
-    class="main-invitation"
-    id="mainInvitation"
->
-
-
-    <!-- =====================================================
-         MUSIC BUTTON
-    ====================================================== -->
-
-    <button
-        class="music-button"
-        id="musicButton"
-        type="button"
-        aria-label="Toggle Music"
-    >
-
-        <span class="music-icon" aria-hidden="true">
-            ❚❚
-        </span>
-
-        <span
-            class="music-text"
-            data-i18n="music"
-        >
-            Երաժշտություն
-        </span>
-
+    <button class="music-button" id="musicButton" type="button" aria-label="Toggle Music">
+        <span class="music-icon" aria-hidden="true">❚❚</span>
+        <span class="music-text" data-i18n="music">Եdelays delays</span>
     </button>
 
-
-
-    <!-- =====================================================
-         HERO
-    ====================================================== -->
-
+    <!-- HERO -->
     <section class="hero section">
-
-
         <div class="floral-decoration floral-top-left"></div>
-
         <div class="floral-decoration floral-top-right"></div>
-
-
         <div class="section-container">
-
-
-            <p
-                class="eyebrow"
-                data-i18n="heroEyebrow"
-            >
-                Մեր սիրո պատմության նոր սկիզբը
-            </p>
-
-
-
-            <h2 class="couple-names">
-
-                Erik
-
-                <span>
-                    &
-                </span>
-
-                Elen
-
-            </h2>
-
-
-
+            <p class="eyebrow" data-i18n="heroEyebrow">Մdelays delays delays delays</p>
+            <h2 class="couple-names">Erik <span>&</span> Elen</h2>
             <div class="hero-photo">
-
-                <img
-                    src="images/couple.jpg"
-                    alt="Erik & Elen"
-                >
-
+                <img src="images/couple.jpg" alt="Erik & Elen">
             </div>
-
-
-
             <div class="invitation-message">
-
-
-                <p data-i18n="heroText1">
-                    Սիրով հրավիրում ենք Ձեզ կիսելու մեզ հետ
-                </p>
-
-
-                <p data-i18n="heroText2">
-                    մեր կյանքի ամենագեղեցիկ օրվա
-                </p>
-
-
-                <p data-i18n="heroText3">
-                    ուրախությունն ու երջանկությունը։
-                </p>
-
-
+                <p data-i18n="heroText1">Սdelays delays delays delays delays delays</p>
+                <p data-i18n="heroText2">delays delays delays delays delays</p>
+                <p data-i18n="heroText3">delays delays delays delays delays delays delays</p>
             </div>
-
-
-
             <div class="date-display">
-
-                <span>
-                    02
-                </span>
-
-                <i></i>
-
-                <span>
-                    10
-                </span>
-
-                <i></i>
-
-                <span>
-                    2026
-                </span>
-
+                <span>02</span><i></i><span>10</span><i></i><span>2026</span>
             </div>
-
-
-
-            <p
-                class="date-label"
-                data-i18n="dateLabel"
-            >
-                Հոկտեմբերի 2
-            </p>
-
-
+            <p class="date-label" data-i18n="dateLabel">Հdelays delays 2</p>
         </div>
-
     </section>
 
-
-
-    <!-- =====================================================
-         COUNTDOWN
-    ====================================================== -->
-
+    <!-- COUNTDOWN -->
     <section class="countdown-section section">
-
-
         <div class="section-container">
-
-
-            <p
-                class="eyebrow"
-                data-i18n="countdownEyebrow"
-            >
-                Մինչև մեր օրը
-            </p>
-
-
-
-            <h3 data-i18n="countdownTitle">
-                Սիրով սպասում ենք այս օրվան
-            </h3>
-
-
-
-            <div
-                class="countdown"
-                id="countdown"
-            >
-
-
-                <div class="countdown-item">
-
-                    <strong id="days">
-                        00
-                    </strong>
-
-                    <span data-i18n="days">
-                        Օր
-                    </span>
-
-                </div>
-
-
-
-                <div class="countdown-separator">
-                    :
-                </div>
-
-
-
-                <div class="countdown-item">
-
-                    <strong id="hours">
-                        00
-                    </strong>
-
-                    <span data-i18n="hours">
-                        Ժամ
-                    </span>
-
-                </div>
-
-
-
-                <div class="countdown-separator">
-                    :
-                </div>
-
-
-
-                <div class="countdown-item">
-
-                    <strong id="minutes">
-                        00
-                    </strong>
-
-                    <span data-i18n="minutes">
-                        Րոպե
-                    </span>
-
-                </div>
-
-
-
-                <div class="countdown-separator">
-                    :
-                </div>
-
-
-
-                <div class="countdown-item">
-
-                    <strong id="seconds">
-                        00
-                    </strong>
-
-                    <span data-i18n="seconds">
-                        Վայրկյան
-                    </span>
-
-                </div>
-
-
+            <p class="eyebrow" data-i18n="countdownEyebrow">Մdelays delays delays</p>
+            <h3 data-i18n="countdownTitle">Սdelays delays delays delays delays</h3>
+            <div class="countdown" id="countdown">
+                <div class="countdown-item"><strong id="days">00</strong><span data-i18n="days">Օdelays</span></div>
+                <div class="countdown-separator">:</div>
+                <div class="countdown-item"><strong id="hours">00</strong><span data-i18n="hours">Жdelays</span></div>
+                <div class="countdown-separator">:</div>
+                <div class="countdown-item"><strong id="minutes">00</strong><span data-i18n="minutes">Рdelays</span></div>
+                <div class="countdown-separator">:</div>
+                <div class="countdown-item"><strong id="seconds">00</strong><span data-i18n="seconds">Вdelays</span></div>
             </div>
-
-
         </div>
-
     </section>
 
-
-
-    <!-- =====================================================
-         PROGRAM
-    ====================================================== -->
-
+    <!-- PROGRAM -->
     <section class="program-section section">
-
-
         <div class="section-container">
-
-
-            <p
-                class="eyebrow"
-                data-i18n="programEyebrow"
-            >
-                Մեր հատուկ օրը
-            </p>
-
-
-
-            <h2
-                class="section-title"
-                data-i18n="programTitle"
-            >
-                Օրվա ծրագիր
-            </h2>
-
-
-
-            <p
-                class="section-subtitle"
-                data-i18n="programSubtitle"
-            >
-                Օրվա յուրաքանչյուր պահը ցանկանում ենք կիսել Ձեզ հետ։
-            </p>
-
-
-
+            <p class="eyebrow" data-i18n="programEyebrow">Մdelays delays delays</p>
+            <h2 class="section-title" data-i18n="programTitle">Օdelays delays delays</h2>
+            <p class="section-subtitle" data-i18n="programSubtitle">Օdelays delays delays delays delays delays delays delays delays</p>
             <div class="timeline">
-
-
-                <!-- EVENT 01 -->
-
                 <article class="timeline-item">
-
-
-                    <div class="timeline-icon">
-                        ♡
-                    </div>
-
-
-
+                    <div class="timeline-icon">♡</div>
                     <div class="timeline-content">
-
-
-                        <span class="timeline-number">
-                            01
-                        </span>
-
-
-
-                        <h3 data-i18n="event1Title">
-                            Հարսանեկան արարողություն
-                        </h3>
-
-
-
-                        <div class="timeline-time">
-
-                            <span data-i18n="time">
-                                Ժամը՝
-                            </span>
-
-                            <strong>
-                                13:00
-                            </strong>
-
-                        </div>
-
-
-
-                        <h4 data-i18n="event1Place">
-                            Հարսի տուն
-                        </h4>
-
-
-
-                        <div class="event-photo">
-
-                            <img
-                                src="images/ceremony.jpg"
-                                alt="Հարսի տուն"
-                            >
-
-                        </div>
-
-
-
-                        <p
-                            class="event-address"
-                            data-i18n="event1Address"
-                        >
-                            Հասցեն կավելացվի այստեղ
-                        </p>
-
-
-
-                        <a
-                            href="#"
-                            class="map-button"
-                            target="_blank"
-                            rel="noopener"
-                            data-i18n="map"
-                        >
-
-                            <span>
-                                ⌖
-                            </span>
-
-                            Տեսնել քարտեզի վրա
-
-                        </a>
-
-
+                        <span class="timeline-number">01</span>
+                        <h3 data-i18n="event1Title">Հdelays delays delays delays</h3>
+                        <div class="timeline-time"><span data-i18n="time">Жdelays՝</span> <strong>13:00</strong></div>
+                        <h4 data-i18n="event1Place">Հdelays delays</h4>
+                        <div class="event-photo"><img src="images/ceremony.jpg" alt="Հdelays delays"></div>
+                        <p class="event-address" data-i18n="event1Address">Հdelays delays delays delays delays</p>
+                        <a href="#" class="map-button" target="_blank" rel="noopener"><span>⌖</span> <span data-i18n="map">Տdelays delays delays delays</span></a>
                     </div>
-
-
                 </article>
-
-
-
-                <!-- EVENT 02 -->
-
                 <article class="timeline-item">
-
-
-                    <div class="timeline-icon">
-                        ♧
-                    </div>
-
-
-
+                    <div class="timeline-icon">♧</div>
                     <div class="timeline-content">
-
-
-                        <span class="timeline-number">
-                            02
-                        </span>
-
-
-
-                        <h3 data-i18n="event2Title">
-                            Պսակադրություն
-                        </h3>
-
-
-
-                        <div class="timeline-time">
-
-                            <span data-i18n="time">
-                                Ժամը՝
-                            </span>
-
-                            <strong>
-                                --:--
-                            </strong>
-
-                        </div>
-
-
-
-                        <h4 data-i18n="event2Place">
-                            Եկեղեցու անունը
-                        </h4>
-
-
-
-                        <div class="event-photo">
-
-                            <img
-                                src="images/church.jpg"
-                                alt="Եկեղեցի"
-                            >
-
-                        </div>
-
-
-
-                        <p
-                            class="event-address"
-                            data-i18n="event2Address"
-                        >
-                            Եկեղեցու հասցեն կավելացվի այստեղ
-                        </p>
-
-
-
-                        <a
-                            href="#"
-                            class="map-button"
-                            target="_blank"
-                            rel="noopener"
-                            data-i18n="map"
-                        >
-
-                            <span>
-                                ⌖
-                            </span>
-
-                            Տեսնել քարտեզի վրա
-
-                        </a>
-
-
+                        <span class="timeline-number">02</span>
+                        <h3 data-i18n="event2Title">Պdelays delays</h3>
+                        <div class="timeline-time"><span data-i18n="time">Жdelays՝</span> <strong>--:--</strong></div>
+                        <h4 data-i18n="event2Place">Еdelays delays delays</h4>
+                        <div class="event-photo"><img src="images/church.jpg" alt="Еdelays"></div>
+                        <p class="event-address" data-i18n="event2Address">Еdelays delays delays delays delays delays</p>
+                        <a href="#" class="map-button" target="_blank" rel="noopener"><span>⌖</span> <span data-i18n="map">Տdelays delays delays delays</span></a>
                     </div>
-
-
                 </article>
-
-
-
-                <!-- EVENT 03 -->
-
                 <article class="timeline-item">
-
-
-                    <div class="timeline-icon">
-                        ♢
-                    </div>
-
-
-
+                    <div class="timeline-icon">♢</div>
                     <div class="timeline-content">
-
-
-                        <span class="timeline-number">
-                            03
-                        </span>
-
-
-
-                        <h3 data-i18n="event3Title">
-                            Հարսանեկան հանդիսություն
-                        </h3>
-
-
-
-                        <div class="timeline-time">
-
-                            <span data-i18n="time">
-                                Ժամը՝
-                            </span>
-
-                            <strong>
-                                --:--
-                            </strong>
-
-                        </div>
-
-
-
-                        <div class="event-photo reception-photo">
-
-                            <img
-                                src="images/couple.jpg"
-                                alt="Erik & Elen"
-                            >
-
-                        </div>
-
-
-
-                        <h4 data-i18n="restaurantName">
-                            Ռեստորանի անունը
-                        </h4>
-
-
-
-                        <p
-                            class="event-address"
-                            data-i18n="restaurantAddress"
-                        >
-                            Ռեստորանի հասցեն կավելացվի այստեղ
-                        </p>
-
-
-
-                        <a
-                            href="#"
-                            class="map-button"
-                            target="_blank"
-                            rel="noopener"
-                            data-i18n="map"
-                        >
-
-                            <span>
-                                ⌖
-                            </span>
-
-                            Տեսնել քարտեզի վրա
-
-                        </a>
-
-
+                        <span class="timeline-number">03</span>
+                        <h3 data-i18n="event3Title">Հdelays delays delays delays delays</h3>
+                        <div class="timeline-time"><span data-i18n="time">Жdelays՝</span> <strong>--:--</strong></div>
+                        <div class="event-photo reception-photo"><img src="images/couple.jpg" alt="Erik & Elen"></div>
+                        <h4 data-i18n="restaurantName">Рdelays delays delays delays</h4>
+                        <p class="event-address" data-i18n="restaurantAddress">Рdelays delays delays delays delays delays</p>
+                        <a href="#" class="map-button" target="_blank" rel="noopener"><span>⌖</span> <span data-i18n="map">Տdelays delays delays delays</span></a>
                     </div>
-
-
                 </article>
-
-
             </div>
-
-
         </div>
-
     </section>
 
-
-
-    <!-- =====================================================
-         RSVP
-    ====================================================== -->
-
-    <section
-        class="rsvp-section section"
-        id="rsvp"
-    >
-
-
+    <!-- RSVP -->
+    <section class="rsvp-section section" id="rsvp">
         <div class="section-container">
-
-
-            <p
-                class="eyebrow"
-                data-i18n="rsvpEyebrow"
-            >
-                Ձեր ներկայությունը մեզ համար կարևոր է
-            </p>
-
-
-
-            <h2
-                class="section-title"
-                data-i18n="rsvpTitle"
-            >
-                Հաստատեք Ձեր ներկայությունը
-            </h2>
-
-
-
-            <p
-                class="section-subtitle"
-                data-i18n="rsvpSubtitle"
-            >
-                Մեզ համար մեծ ուրախություն կլինի Ձեզ հետ կիսել այս առանձնահատուկ օրը։
-            </p>
-
-
-
-            <form
-                class="rsvp-form"
-                id="rsvpForm"
-            >
-
-
-                <!-- SIDE -->
-
+            <p class="eyebrow" data-i18n="rsvpEyebrow">Ձdelays delays delays delays delays delays delays delays</p>
+            <h2 class="section-title" data-i18n="rsvpTitle">Հdelays delays delays delays delays delays delays</h2>
+            <p class="section-subtitle" data-i18n="rsvpSubtitle">Մdelays delays delays delays delays delays delays delays delays delays delays delays delays delays</p>
+            <form class="rsvp-form" id="rsvpForm">
                 <div class="form-group">
-
-                    <label data-i18n="sideQuestion">
-                        Որտե՞ղ եք ցանկանում նստել
-                    </label>
-
-
+                    <label data-i18n="sideQuestion">Որdelays delays delays delays delays delays delays delays</label>
                     <div class="choice-buttons">
-
-
-                        <button
-                            type="button"
-                            class="choice-button"
-                            data-group="side"
-                            data-value-hy="Հարսի կողմ"
-                            data-value-ru="Сторона невесты"
-                        >
-                            Հարսի կողմ
-                        </button>
-
-
-
-                        <button
-                            type="button"
-                            class="choice-button"
-                            data-group="side"
-                            data-value-hy="Փեսայի կողմ"
-                            data-value-ru="Сторона жениха"
-                        >
-                            Փեսայի կողմ
-                        </button>
-
-
+                        <button type="button" class="choice-button" data-group="side" data-value-hy="Հdelays delays" data-value-ru="Сdelays delays">Հdelays delays</button>
+                        <button type="button" class="choice-button" data-group="side" data-value-hy="Фdelays delays" data-value-ru="Сdelays delays">Фdelays delays</button>
                     </div>
-
-
-                    <input
-                        type="hidden"
-                        name="side"
-                        id="sideInput"
-                    >
-
+                    <input type="hidden" name="side" id="sideInput">
                 </div>
-
-
-
-                <!-- ATTENDANCE -->
-
                 <div class="form-group">
-
-
-                    <label data-i18n="attendanceQuestion">
-                        Կգա՞ք մեզ հետ կիսելու այս օրը
-                    </label>
-
-
-
+                    <label data-i18n="attendanceQuestion">Кdelays delays delays delays delays delays delays delays delays</label>
                     <div class="choice-buttons">
-
-
-                        <button
-                            type="button"
-                            class="choice-button"
-                            data-group="attendance"
-                            data-value-hy="Այո, սիրով կգամ"
-                            data-value-ru="Да, с радостью приду"
-                        >
-                            ❤️ Այո, սիրով կգամ
-                        </button>
-
-
-
-                        <button
-                            type="button"
-                            class="choice-button"
-                            data-group="attendance"
-                            data-value-hy="Ցավոք, չեմ կարող գալ"
-                            data-value-ru="К сожалению, не смогу прийти"
-                        >
-                            🤍 Ցավոք, չեմ կարող գալ
-                        </button>
-
-
+                        <button type="button" class="choice-button" data-group="attendance" data-value-hy="Аdelays delays delays delays delays" data-value-ru="Дdelays delays delays delays delays">❤️ Аdelays delays delays delays delays</button>
+                        <button type="button" class="choice-button" data-group="attendance" data-value-hy="Цdelays delays delays delays delays delays delays" data-value-ru="Кdelays delays delays delays delays delays delays">🤍 Цdelays delays delays delays delays delays delays</button>
                     </div>
-
-
-                    <input
-                        type="hidden"
-                        name="attendance"
-                        id="attendanceInput"
-                    >
-
+                    <input type="hidden" name="attendance" id="attendanceInput">
                 </div>
-
-
-
-                <!-- NAME -->
-
                 <div class="form-group">
-
-
-                    <label
-                        for="guestName"
-                        data-i18n="nameLabel"
-                    >
-                        Անուն, ազգանուն
-                    </label>
-
-
-
-                    <input
-                        type="text"
-                        id="guestName"
-                        name="guestName"
-                        placeholder="Գրեք Ձեր անունը և ազգանունը"
-                        data-placeholder-hy="Գրեք Ձեր անունը և ազգանունը"
-                        data-placeholder-ru="Введите имя и фамилию"
-                        required
-                    >
-
+                    <label for="guestName" data-i18n="nameLabel">Аdelays delays delays delays</label>
+                    <input type="text" id="guestName" name="guestName" placeholder="Гdelays delays delays delays delays delays delays delays" data-placeholder-hy="Гdelays delays delays delays delays delays delays delays" data-placeholder-ru="Вdelays delays delays delays delays delays" required>
                 </div>
-
-
-
-                <!-- GUEST COUNT -->
-
                 <div class="form-group">
-
-
-                    <label
-                        for="guestCount"
-                        data-i18n="guestCountLabel"
-                    >
-                        Հյուրերի թիվ
-                    </label>
-
-
-
-                    <select
-                        id="guestCount"
-                        name="guestCount"
-                    >
-
-                        <option
-                            value=""
-                            data-i18n="select"
-                        >
-                            Ընտրեք
-                        </option>
-
-                        <option value="1">
-                            1
-                        </option>
-
-                        <option value="2">
-                            2
-                        </option>
-
-                        <option value="3">
-                            3
-                        </option>
-
-                        <option value="4">
-                            4
-                        </option>
-
-                        <option value="5">
-                            5
-                        </option>
-
-                        <option value="6+">
-                            6+
-                        </option>
-
+                    <label for="guestCount" data-i18n="guestCountLabel">Нdelays delays delays delays</label>
+                    <select id="guestCount" name="guestCount">
+                        <option value="" data-i18n="select">Ыdelays</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6+">6+</option>
                     </select>
-
-
                 </div>
-
-
-
-                <!-- SUBMIT -->
-
-                <button
-                    type="submit"
-                    class="submit-button"
-                    data-i18n="submit"
-                >
-                    Հաստատել ներկայությունը
-                </button>
-
-
+                <button type="submit" class="submit-button" data-i18n="submit">Нdelays delays delays delays delays delays delays</button>
             </form>
-
-
-
-            <!-- RSVP SUCCESS -->
-
-            <div
-                class="rsvp-success"
-                id="rsvpSuccess"
-            >
-
-
-                <div class="success-symbol">
-                    ♡
-                </div>
-
-
-                <h3 data-i18n="successTitle">
-                    Շնորհակալ ենք 🤍
-                </h3>
-
-
-                <p data-i18n="successText1">
-                    Ձեր պատասխանը գրանցված է։
-                </p>
-
-
-                <p data-i18n="successText2">
-                    Սիրով սպասում ենք Ձեզ։
-                </p>
-
-
+            <div class="rsvp-success" id="rsvpSuccess">
+                <div class="success-symbol">♡</div>
+                <h3 data-i18n="successTitle">Шdelays delays 🤍</h3>
+                <p data-i18n="successText1">Вdelays delays delays delays delays delays delays</p>
+                <p data-i18n="successText2">Сdelays delays delays delays delays</p>
             </div>
-
-
         </div>
-
     </section>
 
-
-
-    <!-- =====================================================
-         FINAL SECTION
-    ====================================================== -->
-
+    <!-- FINAL -->
     <section class="final-section section">
-
-
         <div class="floral-decoration floral-bottom-left"></div>
-
         <div class="floral-decoration floral-bottom-right"></div>
-
-
         <div class="section-container">
-
-
-            <div class="final-photo">
-
-                <img
-                    src="images/couple.jpg"
-                    alt="Erik & Elen"
-                >
-
-            </div>
-
-
-
+            <div class="final-photo"><img src="images/couple.jpg" alt="Erik & Elen"></div>
             <div class="final-message">
-
-
-                <p data-i18n="finalText1">
-                    Սիրով սպասում ենք Ձեզ
-                </p>
-
-
-                <p data-i18n="finalText2">
-                    մեր կյանքի այս կարևոր ու գեղեցիկ օրը։
-                </p>
-
-
+                <p data-i18n="finalText1">Сdelays delays delays delays delays</p>
+                <p data-i18n="finalText2">delays delays delays delays delays delays delays delays delays delays</p>
             </div>
-
-
-
-            <h2 class="final-names">
-
-                Erik
-
-                <span>
-                    &
-                </span>
-
-                Elen
-
-            </h2>
-
-
-
-            <p class="final-date">
-                02 · 10 · 2026
-            </p>
-
-
+            <h2 class="final-names">Erik <span>&</span> Elen</h2>
+            <p class="final-date">02 · 10 · 2026</p>
         </div>
-
     </section>
 
-
-
-    <!-- =====================================================
-         FOOTER
-    ====================================================== -->
-
+    <!-- FOOTER -->
     <footer class="footer">
-
-
-        <p data-i18n="footerText">
-            Սիրով
-        </p>
-
-
-        <span>
-            Erik & Elen
-        </span>
-
-
+        <p data-i18n="footerText">Сdelays delays</p>
+        <span>Erik & Elen</span>
     </footer>
-
-
 </main>
 
-
-
-<!-- =========================================================
-     RSVP MODAL
-========================================================= -->
-
-<div
-    class="modal"
-    id="confirmationModal"
-    aria-hidden="true"
->
-
-
+<!-- MODAL -->
+<div class="modal" id="confirmationModal" aria-hidden="true">
     <div class="modal-overlay"></div>
-
-
     <div class="modal-content">
-
-
-        <button
-            class="modal-close"
-            id="modalClose"
-            type="button"
-            aria-label="Close modal"
-        >
-            ×
-        </button>
-
-
-        <div class="modal-heart">
-            ♡
-        </div>
-
-
-        <h3 data-i18n="modalTitle">
-            Սիրով սպասում ենք Ձեզ
-        </h3>
-
-
-        <p data-i18n="modalText">
-            Շնորհակալ ենք Ձեր պատասխանի համար։
-        </p>
-
-
+        <button class="modal-close" id="modalClose" type="button" aria-label="Close modal">×</button>
+        <div class="modal-heart">♡</div>
+        <h3 data-i18n="modalTitle">Сdelays delays delays delays delays</h3>
+        <p data-i18n="modalText">Шdelays delays delays delays delays delays delays</p>
     </div>
-
-
 </div>
 
+<script>
+    // =====================================================
+    // TRANSLATIONS
+    // =====================================================
+    const translations = {
+        hy: {
+            openInvitation: 'Բացdelays հdelays delays',
+            music: 'Еdelays delays',
+            heroEyebrow: 'Մdelays delays delays delays',
+            heroText1: 'Սdelays delays delays delays delays delays',
+            heroText2: 'delays delays delays delays delays',
+            heroText3: 'delays delays delays delays delays delays delays',
+            dateLabel: 'Հdelays delays 2',
+            countdownEyebrow: 'Մdelays delays delays',
+            countdownTitle: 'Сdelays delays delays delays delays',
+            days: 'Օdelays',
+            hours: 'Жdelays',
+            minutes: 'Рdelays',
+            seconds: 'Вdelays',
+            programEyebrow: 'Մdelays delays delays',
+            programTitle: 'Օdelays delays delays',
+            programSubtitle: 'Օdelays delays delays delays delays delays delays delays delays',
+            event1Title: 'Հdelays delays delays delays',
+            time: 'Жdelays՝',
+            event1Place: 'Հdelays delays',
+            event1Address: 'Հdelays delays delays delays delays',
+            event2Title: 'Пdelays delays',
+            event2Place: 'Еdelays delays delays',
+            event2Address: 'Еdelays delays delays delays delays delays',
+            event3Title: 'Нdelays delays delays delays delays',
+            restaurantName: 'Рdelays delays delays delays',
+            restaurantAddress: 'Рdelays delays delays delays delays delays',
+            map: 'Тdelays delays delays delays',
+            rsvpEyebrow: 'Зdelays delays delays delays delays delays delays delays',
+            rsvpTitle: 'Нdelays delays delays delays delays delays delays',
+            rsvpSubtitle: 'Мdelays delays delays delays delays delays delays delays delays delays delays delays delays',
+            sideQuestion: 'Оdelays delays delays delays delays delays delays delays',
+            attendanceQuestion: 'Кdelays delays delays delays delays delays delays delays delays',
+            nameLabel: 'Аdelays delays delays delays',
+            guestCountLabel: 'Нdelays delays delays delays',
+            select: 'Ыdelays',
+            submit: 'Нdelays delays delays delays delays delays delays',
+            successTitle: 'Шdelays delays 🤍',
+            successText1: 'Вdelays delays delays delays delays delays delays',
+            successText2: 'Сdelays delays delays delays delays',
+            finalText1: 'Сdelays delays delays delays delays',
+            finalText2: 'delays delays delays delays delays delays delays delays delays delays',
+            footerText: 'Сdelays delays',
+            modalTitle: 'Сdelays delays delays delays delays',
+            modalText: 'Шdelays delays delays delays delays delays delays'
+        },
+        ru: {
+            openInvitation: 'Открыть приглашение',
+            music: 'Музыка',
+            heroEyebrow: 'Новое начало нашей истории любви',
+            heroText1: 'С любовью приглашаем вас разделить с нами',
+            heroText2: 'радость и счастье самого красивого дня',
+            heroText3: 'нашей жизни.',
+            dateLabel: '2 октября',
+            countdownEyebrow: 'До нашего дня',
+            countdownTitle: 'С любовью ждём этот день',
+            days: 'Дней',
+            hours: 'Часов',
+            minutes: 'Минут',
+            seconds: 'Секунд',
+            programEyebrow: 'Наш особенный день',
+            programTitle: 'Программа дня',
+            programSubtitle: 'Каждый момент этого дня мы хотим разделить с вами.',
+            event1Title: 'Свадебная церемония',
+            time: 'Время:',
+            event1Place: 'Дом невесты',
+            event1Address: 'Адрес будет добавлен здесь',
+            event2Title: 'Венчание',
+            event2Place: 'Название церкви',
+            event2Address: 'Адрес церкви будет добавлен здесь',
+            event3Title: 'Свадебный приём',
+            restaurantName: 'Название ресторана',
+            restaurantAddress: 'Адрес ресторана будет добавлен здесь',
+            map: 'Смотреть на карте',
+            rsvpEyebrow: 'Ваше присутствие важно для нас',
+            rsvpTitle: 'Подтвердите ваше присутствие',
+            rsvpSubtitle: 'Для нас будет большая радость разделить этот особенный день с вами.',
+            sideQuestion: 'Где вы хотите сидеть?',
+            attendanceQuestion: 'Придёте ли вы разделить этот день с нами?',
+            nameLabel: 'Имя, фамилия',
+            guestCountLabel: 'Количество гостей',
+            select: 'Выберите',
+            submit: 'Подтвердить присутствие',
+            successTitle: 'Спасибо 🤍',
+            successText1: 'Ваш ответ записан.',
+            successText2: 'С любовью ждём вас.',
+            finalText1: 'С любовью ждём вас',
+            finalText2: 'в этот важный и красивый день нашей жизни.',
+            footerText: 'С любовью',
+            modalTitle: 'С любовью ждём вас',
+            modalText: 'Спасибо за ваш ответ.'
+        }
+    };
 
+    let currentLang = 'hy';
 
-<!-- =========================================================
-     JAVASCRIPT
-========================================================= -->
+    // =====================================================
+    // LANGUAGE SWITCHER
+    // =====================================================
+    document.querySelectorAll('.language-button').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const lang = btn.dataset.language;
+            if (lang === currentLang) return;
+            currentLang = lang;
 
-<script src="script.js"></script>
+            document.querySelectorAll('.language-button').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
 
+            applyTranslations(lang);
+        });
+    });
 
+    function applyTranslations(lang) {
+        const t = translations[lang];
+        document.querySelectorAll('[data-i18n]').forEach(el => {
+            const key = el.dataset.i18n;
+            if (t[key]) {
+                if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+                    // skip
+                } else {
+                    el.textContent = t[key];
+                }
+            }
+        });
+
+        // Placeholders
+        document.querySelectorAll('[data-placeholder-' + lang + ']').forEach(el => {
+            el.placeholder = el.dataset['placeholder' + lang.charAt(0).toUpperCase() + lang.charAt(1)];
+        });
+
+        // Choice buttons
+        document.querySelectorAll('.choice-button[data-value-' + lang + ']').forEach(btn => {
+            const val = btn.dataset['value' + lang.charAt(0).toUpperCase() + lang.charAt(1)];
+            if (val) {
+                const emoji = btn.textContent.match(/^(\s*[\u{1F000}-\u{1FFFF}]\s*)/u);
+                btn.textContent = emoji ? emoji[0] + val : val;
+            }
+        });
+    }
+
+    // =====================================================
+    // OPEN INVITATION
+    // =====================================================
+    const openBtn = document.getElementById('openInvitation');
+    const openingScreen = document.getElementById('openingScreen');
+    const mainInvitation = document.getElementById('mainInvitation');
+    const musicButton = document.getElementById('musicButton');
+    const weddingMusic = document.getElementById('weddingMusic');
+
+    openBtn.addEventListener('click', () => {
+        document.body.classList.remove('lock-scroll');
+        openingScreen.classList.add('hidden');
+        mainInvitation.classList.add('visible');
+        musicButton.classList.add('visible');
+
+        // Try to play music
+        weddingMusic.volume = 0.4;
+        weddingMusic.play().catch(() => {});
+    });
+
+    // =====================================================
+    // MUSIC TOGGLE
+    // =====================================================
+    let isPlaying = true;
+    musicButton.addEventListener('click', () => {
+        if (isPlaying) {
+            weddingMusic.pause();
+            musicButton.querySelector('.music-icon').textContent = '▶';
+        } else {
+            weddingMusic.play().catch(() => {});
+            musicButton.querySelector('.music-icon').textContent = '❚❚';
+        }
+        isPlaying = !isPlaying;
+    });
+
+    // =====================================================
+    // COUNTDOWN
+    // =====================================================
+    const weddingDate = new Date('2026-10-02T13:00:00');
+
+    function updateCountdown() {
+        const now = new Date();
+        const diff = weddingDate - now;
+
+        if (diff <= 0) {
+            document.getElementById('days').textContent = '00';
+            document.getElementById('hours').textContent = '00';
+            document.getElementById('minutes').textContent = '00';
+            document.getElementById('seconds').textContent = '00';
+            return;
+        }
+
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+        document.getElementById('days').textContent = String(days).padStart(2, '0');
+        document.getElementById('hours').textContent = String(hours).padStart(2, '0');
+        document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
+        document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+    }
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+
+    // =====================================================
+    // RSVP FORM
+    // =====================================================
+    const rsvpForm = document.getElementById('rsvpForm');
+    const rsvpSuccess = document.getElementById('rsvpSuccess');
+    const modal = document.getElementById('confirmationModal');
+    const modalClose = document.getElementById('modalClose');
+
+    // Choice buttons
+    document.querySelectorAll('.choice-button').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const group = btn.dataset.group;
+            document.querySelectorAll(`.choice-button[data-group="${group}"]`).forEach(b => b.classList.remove('selected'));
+            btn.classList.add('selected');
+            document.getElementById(group + 'Input').value = btn.textContent.trim();
+        });
+    });
+
+    // Form submit
+    rsvpForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        rsvpForm.style.display = 'none';
+        rsvpSuccess.classList.add('visible');
+        modal.classList.add('visible');
+    });
+
+    // Modal close
+    modalClose.addEventListener('click', () => {
+        modal.classList.remove('visible');
+    });
+
+    modal.querySelector('.modal-overlay').addEventListener('click', () => {
+        modal.classList.remove('visible');
+    });
+
+    // =====================================================
+    // SCROLL ANIMATIONS
+    // =====================================================
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }
+        });
+    }, observerOptions);
+
+    document.querySelectorAll('.timeline-item, .countdown-item, .final-photo, .final-message, .final-names').forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(30px)';
+        el.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+        observer.observe(el);
+    });
+</script>
 </body>
-
 </html>
+```
