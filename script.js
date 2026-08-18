@@ -15,19 +15,27 @@ const mainInvitation = document.getElementById("mainInvitation");
 const musicButton = document.getElementById("musicButton");
 const weddingMusic = document.getElementById("weddingMusic");
 
-const languageButtons = document.querySelectorAll(".language-button");
+const languageButtons =
+    document.querySelectorAll(".language-button");
 
-const rsvpForm = document.getElementById("rsvpForm");
-const rsvpSuccess = document.getElementById("rsvpSuccess");
+const rsvpForm =
+    document.getElementById("rsvpForm");
 
-const confirmationModal = document.getElementById("confirmationModal");
-const modalClose = document.getElementById("modalClose");
-const modalOverlay = document.querySelector(".modal-overlay");
+const rsvpSuccess =
+    document.getElementById("rsvpSuccess");
 
+const confirmationModal =
+    document.getElementById("confirmationModal");
+
+const modalClose =
+    document.getElementById("modalClose");
+
+const modalOverlay =
+    document.querySelector(".modal-overlay");
 
 
 /* =========================================================
-   LANGUAGE SYSTEM
+   LANGUAGE
 ========================================================= */
 
 let currentLanguage = "hy";
@@ -50,10 +58,10 @@ const translations = {
             "Սիրով հրավիրում ենք Ձեզ կիսելու մեզ հետ",
 
         heroText2:
-            "մեր կյանքի ամենագեղեցիկ օրվա",
+            "մեր կյանքի ամենագեղեցիկ օրը",
 
         heroText3:
-            "ուրախությունն ու երջանկությունը։",
+            "♡",
 
         dateLabel:
             "Հոկտեմբերի 2",
@@ -91,26 +99,17 @@ const translations = {
         event1Place:
             "Հարսի տուն",
 
-        event1Address:
-            "Հասցեն կավելացվի այստեղ",
-
         event2Title:
             "Պսակադրություն",
 
         event2Place:
-            "Եկեղեցու անունը",
-
-        event2Address:
-            "Եկեղեցու հասցեն կավելացվի այստեղ",
+            "Սուրբ Շողակաթ եկեղեցի",
 
         event3Title:
             "Հարսանեկան հանդիսություն",
 
         restaurantName:
-            "Ռեստորանի անունը",
-
-        restaurantAddress:
-            "Ռեստորանի հասցեն կավելացվի այստեղ",
+            "ՀԱՐՍՆԱՔԱՐ ՌԵՍՏՈՐԱՆԱՅԻՆ ՀԱՄԱԼԻՐ",
 
         time:
             "Ժամը՝",
@@ -155,10 +154,10 @@ const translations = {
             "Սիրով սպասում ենք Ձեզ։",
 
         finalText1:
-            "Սիրով սպասում ենք Ձեզ",
+            "Սիրով հրավիրում ենք Ձեզ",
 
         finalText2:
-            "մեր կյանքի այս կարևոր ու գեղեցիկ օրը։",
+            "կիսելու մեր կյանքի այս գեղեցիկ ու կարևոր օրը։",
 
         footerText:
             "Սիրով",
@@ -190,7 +189,7 @@ const translations = {
             "самый красивый день нашей жизни",
 
         heroText3:
-            "нашу радость и счастье.",
+            "♡",
 
         dateLabel:
             "2 октября",
@@ -228,26 +227,17 @@ const translations = {
         event1Place:
             "Дом невесты",
 
-        event1Address:
-            "Адрес будет добавлен здесь",
-
         event2Title:
             "Венчание",
 
         event2Place:
-            "Название церкви",
-
-        event2Address:
-            "Адрес церкви будет добавлен здесь",
+            "Церковь Святой Шогакат",
 
         event3Title:
             "Свадебное торжество",
 
         restaurantName:
-            "Название ресторана",
-
-        restaurantAddress:
-            "Адрес ресторана будет добавлен здесь",
+            "Ресторанный комплекс HARSNAQAR",
 
         time:
             "Время:",
@@ -292,10 +282,10 @@ const translations = {
             "Будем рады видеть Вас.",
 
         finalText1:
-            "С любовью ждём Вас",
+            "С любовью приглашаем Вас",
 
         finalText2:
-            "в этот важный и прекрасный день нашей жизни.",
+            "разделить с нами этот важный и прекрасный день.",
 
         footerText:
             "С любовью",
@@ -311,9 +301,8 @@ const translations = {
 };
 
 
-
 /* =========================================================
-   CHANGE LANGUAGE
+   LANGUAGE CHANGE
 ========================================================= */
 
 function setLanguage(language) {
@@ -324,44 +313,62 @@ function setLanguage(language) {
 
     currentLanguage = language;
 
-    document.documentElement.lang = language === "hy"
-        ? "hy"
-        : "ru";
+
+    /* HTML LANGUAGE */
+
+    document.documentElement.lang =
+        language === "hy"
+            ? "hy"
+            : "ru";
 
 
-    /* TEXT */
+    /* =====================================================
+       NORMAL TEXT
+       ONLY TRANSLATE ELEMENTS THAT NEED TRANSLATION
+    ===================================================== */
 
-    document.querySelectorAll("[data-i18n]").forEach(element => {
+    document
+        .querySelectorAll("[data-i18n]")
+        .forEach(element => {
 
-        const key = element.dataset.i18n;
+            const key =
+                element.dataset.i18n;
 
-        if (
-            translations[language][key] !== undefined
-        ) {
+            if (
+                translations[language][key] !== undefined
+            ) {
 
-            element.textContent =
-                translations[language][key];
+                element.textContent =
+                    translations[language][key];
 
-        }
+            }
 
-    });
-
-
-    /* PLACEHOLDERS */
-
-    document.querySelectorAll("[data-placeholder-hy]").forEach(input => {
-
-        const placeholder =
-            language === "hy"
-                ? input.dataset.placeholderHy
-                : input.dataset.placeholderRu;
-
-        input.placeholder = placeholder;
-
-    });
+        });
 
 
-    /* LANGUAGE BUTTONS */
+    /* =====================================================
+       PLACEHOLDERS
+    ===================================================== */
+
+    document
+        .querySelectorAll("[data-placeholder-hy]")
+        .forEach(input => {
+
+            const placeholder =
+                language === "hy"
+                    ? input.dataset.placeholderHy
+                    : input.dataset.placeholderRu;
+
+            if (placeholder) {
+                input.placeholder = placeholder;
+            }
+
+        });
+
+
+    /* =====================================================
+       LANGUAGE BUTTONS
+    ===================================================== */
 
     languageButtons.forEach(button => {
 
@@ -373,57 +380,112 @@ function setLanguage(language) {
     });
 
 
-    /* RSVP BUTTON VALUES & HIDDEN INPUTS UPDATE */
+    /* =====================================================
+       RSVP CHOICE BUTTONS
+    ===================================================== */
 
-    document.querySelectorAll(
-        ".choice-button[data-value-hy]"
-    ).forEach(button => {
+    document
+        .querySelectorAll(
+            ".choice-button[data-value-hy]"
+        )
+        .forEach(button => {
 
-        const value =
-            language === "hy"
-                ? button.dataset.valueHy
-                : button.dataset.valueRu;
+            const value =
+                language === "hy"
+                    ? button.dataset.valueHy
+                    : button.dataset.valueRu;
 
-        const emoji =
-            button.textContent.trim().startsWith("❤️")
-                ? "❤️ "
-                : button.textContent.trim().startsWith("🤍")
-                    ? "🤍 "
-                    : "";
 
-        button.textContent =
-            emoji + value;
+            /*
+               Keep heart emoji if the button originally
+               contains one.
+            */
 
-        if (button.classList.contains("selected")) {
+            const hasHeart =
+                button.dataset.heart === "true";
 
-            const group = button.dataset.group;
 
-            if (group === "side") {
+            if (hasHeart) {
 
-                const input = document.getElementById("sideInput");
+                button.textContent =
+                    "❤️ " + value;
 
-                if (input) {
-                    input.value = value;
+            } else {
+
+                button.textContent =
+                    value;
+
+            }
+
+
+            /*
+               Keep selected hidden input updated
+            */
+
+            if (
+                button.classList.contains("selected")
+            ) {
+
+                const group =
+                    button.dataset.group;
+
+
+                if (group === "side") {
+
+                    const input =
+                        document.getElementById(
+                            "sideInput"
+                        );
+
+                    if (input) {
+                        input.value = value;
+                    }
+
+                }
+
+
+                if (group === "attendance") {
+
+                    const input =
+                        document.getElementById(
+                            "attendanceInput"
+                        );
+
+                    if (input) {
+
+                        input.value =
+                            value;
+
+                    }
+
                 }
 
             }
 
-            if (group === "attendance") {
+        });
 
-                const input = document.getElementById("attendanceInput");
+}
 
-                if (input) {
-                    input.value = value;
-                }
 
-            }
+/* =========================================================
+   SAVE RSVP HEART STATE
+========================================================= */
+
+document
+    .querySelectorAll(".choice-button")
+    .forEach(button => {
+
+        if (
+            button.textContent
+                .trim()
+                .startsWith("❤️")
+        ) {
+
+            button.dataset.heart = "true";
 
         }
 
     });
-
-}
-
 
 
 /* =========================================================
@@ -432,16 +494,18 @@ function setLanguage(language) {
 
 languageButtons.forEach(button => {
 
-    button.addEventListener("click", () => {
+    button.addEventListener(
+        "click",
+        () => {
 
-        setLanguage(
-            button.dataset.language
-        );
+            setLanguage(
+                button.dataset.language
+            );
 
-    });
+        }
+    );
 
 });
-
 
 
 /* =========================================================
@@ -450,57 +514,88 @@ languageButtons.forEach(button => {
 
 if (openInvitation) {
 
-    openInvitation.addEventListener("click", async () => {
+    openInvitation.addEventListener(
+        "click",
+        async () => {
 
-        openingScreen.classList.add("hidden");
+            if (openingScreen) {
 
-        document.body.classList.remove("lock-scroll");
-
-        mainInvitation.classList.add("visible");
-
-
-        /* Start music */
-
-        if (weddingMusic) {
-
-            try {
-
-                await weddingMusic.play();
-
-                musicButton.classList.add("active");
-
-                updateMusicIcon();
-
-            } catch (error) {
-
-                console.log(
-                    "Music could not start automatically."
+                openingScreen.classList.add(
+                    "hidden"
                 );
 
             }
 
+
+            document.body.classList.remove(
+                "lock-scroll"
+            );
+
+
+            if (mainInvitation) {
+
+                mainInvitation.classList.add(
+                    "visible"
+                );
+
+            }
+
+
+            /* =================================================
+               MUSIC
+            ================================================= */
+
+            if (weddingMusic) {
+
+                try {
+
+                    await weddingMusic.play();
+
+                    if (musicButton) {
+
+                        musicButton.classList.add(
+                            "active"
+                        );
+
+                    }
+
+                    updateMusicIcon();
+
+                } catch (error) {
+
+                    console.log(
+                        "Music could not start automatically."
+                    );
+
+                }
+
+            }
+
+
+            /* =================================================
+               SCROLL TOP
+            ================================================= */
+
+            setTimeout(
+                () => {
+
+                    window.scrollTo({
+                        top: 0,
+                        behavior: "smooth"
+                    });
+
+                },
+                250
+            );
+
         }
-
-
-        /* Scroll to main section */
-
-        setTimeout(() => {
-
-            window.scrollTo({
-                top: 0,
-                behavior: "smooth"
-            });
-
-        }, 250);
-
-    });
+    );
 
 }
 
 
-
 /* =========================================================
-   MUSIC
+   MUSIC ICON
 ========================================================= */
 
 function updateMusicIcon() {
@@ -509,8 +604,12 @@ function updateMusicIcon() {
         return;
     }
 
+
     const icon =
-        musicButton.querySelector(".music-icon");
+        musicButton.querySelector(
+            ".music-icon"
+        );
+
 
     if (!icon) {
         return;
@@ -533,64 +632,89 @@ function updateMusicIcon() {
 }
 
 
+/* =========================================================
+   MUSIC EVENTS
+========================================================= */
+
 if (weddingMusic) {
 
-    weddingMusic.addEventListener("pause", () => {
+    weddingMusic.addEventListener(
+        "pause",
+        () => {
 
-        if (musicButton) {
-            musicButton.classList.remove("active");
-        }
+            if (musicButton) {
 
-        updateMusicIcon();
-
-    });
-
-    weddingMusic.addEventListener("play", () => {
-
-        if (musicButton) {
-            musicButton.classList.add("active");
-        }
-
-        updateMusicIcon();
-
-    });
-
-}
-
-
-if (musicButton) {
-
-    musicButton.addEventListener("click", async () => {
-
-        if (!weddingMusic) {
-            return;
-        }
-
-
-        if (weddingMusic.paused) {
-
-            try {
-
-                await weddingMusic.play();
-
-            } catch (error) {
-
-                console.log(
-                    "Music playback failed."
+                musicButton.classList.remove(
+                    "active"
                 );
 
             }
 
-        } else {
-
-            weddingMusic.pause();
+            updateMusicIcon();
 
         }
+    );
 
-    });
+
+    weddingMusic.addEventListener(
+        "play",
+        () => {
+
+            if (musicButton) {
+
+                musicButton.classList.add(
+                    "active"
+                );
+
+            }
+
+            updateMusicIcon();
+
+        }
+    );
 
 }
 
+
+/* =========================================================
+   MUSIC BUTTON
+========================================================= */
+
+if (musicButton) {
+
+    musicButton.addEventListener(
+        "click",
+        async () => {
+
+            if (!weddingMusic) {
+                return;
+            }
+
+
+            if (weddingMusic.paused) {
+
+                try {
+
+                    await weddingMusic.play();
+
+                } catch (error) {
+
+                    console.log(
+                        "Music playback failed."
+                    );
+
+                }
+
+            } else {
+
+                weddingMusic.pause();
+
+            }
+
+        }
+    );
+
+}
 
 
 /* =========================================================
@@ -599,16 +723,25 @@ if (musicButton) {
 
 /*
    Wedding date:
-   October 2, 2026, 13:00 local time
+   October 2, 2026 — 13:00
 */
 
 const weddingDate =
-    new Date(2026, 9, 2, 13, 0, 0);
+    new Date(
+        2026,
+        9,
+        2,
+        13,
+        0,
+        0
+    );
 
 
 function updateCountdown() {
 
-    const now = new Date();
+    const now =
+        new Date();
+
 
     const difference =
         weddingDate.getTime() -
@@ -616,16 +749,24 @@ function updateCountdown() {
 
 
     const daysElement =
-        document.getElementById("days");
+        document.getElementById(
+            "days"
+        );
 
     const hoursElement =
-        document.getElementById("hours");
+        document.getElementById(
+            "hours"
+        );
 
     const minutesElement =
-        document.getElementById("minutes");
+        document.getElementById(
+            "minutes"
+        );
 
     const secondsElement =
-        document.getElementById("seconds");
+        document.getElementById(
+            "seconds"
+        );
 
 
     if (
@@ -642,13 +783,17 @@ function updateCountdown() {
 
     if (difference <= 0) {
 
-        daysElement.textContent = "00";
+        daysElement.textContent =
+            "00";
 
-        hoursElement.textContent = "00";
+        hoursElement.textContent =
+            "00";
 
-        minutesElement.textContent = "00";
+        minutesElement.textContent =
+            "00";
 
-        secondsElement.textContent = "00";
+        secondsElement.textContent =
+            "00";
 
         return;
 
@@ -664,42 +809,57 @@ function updateCountdown() {
 
     const hours =
         Math.floor(
-            (difference /
-                (1000 * 60 * 60)) %
-            24
+            (
+                difference /
+                (1000 * 60 * 60)
+            ) % 24
         );
 
 
     const minutes =
         Math.floor(
-            (difference /
-                (1000 * 60)) %
-            60
+            (
+                difference /
+                (1000 * 60)
+            ) % 60
         );
 
 
     const seconds =
         Math.floor(
-            (difference /
-                1000) %
-            60
+            (
+                difference /
+                1000
+            ) % 60
         );
 
 
     daysElement.textContent =
-        String(days).padStart(2, "0");
+        String(days).padStart(
+            2,
+            "0"
+        );
 
 
     hoursElement.textContent =
-        String(hours).padStart(2, "0");
+        String(hours).padStart(
+            2,
+            "0"
+        );
 
 
     minutesElement.textContent =
-        String(minutes).padStart(2, "0");
+        String(minutes).padStart(
+            2,
+            "0"
+        );
 
 
     secondsElement.textContent =
-        String(seconds).padStart(2, "0");
+        String(seconds).padStart(
+            2,
+            "0"
+        );
 
 }
 
@@ -713,80 +873,89 @@ setInterval(
 );
 
 
-
 /* =========================================================
    RSVP CHOICE BUTTONS
 ========================================================= */
 
 const choiceButtons =
-    document.querySelectorAll(".choice-button");
+    document.querySelectorAll(
+        ".choice-button"
+    );
 
 
 choiceButtons.forEach(button => {
 
-    button.addEventListener("click", () => {
+    button.addEventListener(
+        "click",
+        () => {
 
-        const group =
-            button.dataset.group;
-
-
-        const buttonsInGroup =
-            document.querySelectorAll(
-                `.choice-button[data-group="${group}"]`
-            );
+            const group =
+                button.dataset.group;
 
 
-        buttonsInGroup.forEach(item => {
+            const buttonsInGroup =
+                document.querySelectorAll(
+                    `.choice-button[data-group="${group}"]`
+                );
 
-            item.classList.remove(
+
+            buttonsInGroup.forEach(item => {
+
+                item.classList.remove(
+                    "selected"
+                );
+
+            });
+
+
+            button.classList.add(
                 "selected"
             );
 
-        });
+
+            const value =
+                currentLanguage === "hy"
+                    ? button.dataset.valueHy
+                    : button.dataset.valueRu;
 
 
-        button.classList.add(
-            "selected"
-        );
+            if (group === "side") {
+
+                const input =
+                    document.getElementById(
+                        "sideInput"
+                    );
+
+                if (input) {
+
+                    input.value =
+                        value;
+
+                }
+
+            }
 
 
-        const value =
-            currentLanguage === "hy"
-                ? button.dataset.valueHy
-                : button.dataset.valueRu;
+            if (group === "attendance") {
 
+                const input =
+                    document.getElementById(
+                        "attendanceInput"
+                    );
 
-        if (group === "side") {
+                if (input) {
 
-            const input =
-                document.getElementById(
-                    "sideInput"
-                );
+                    input.value =
+                        value;
 
-            if (input) {
-                input.value = value;
+                }
+
             }
 
         }
-
-
-        if (group === "attendance") {
-
-            const input =
-                document.getElementById(
-                    "attendanceInput"
-                );
-
-            if (input) {
-                input.value = value;
-            }
-
-        }
-
-    });
+    );
 
 });
-
 
 
 /* =========================================================
@@ -823,7 +992,9 @@ if (rsvpForm) {
                 );
 
 
-            /* Validation */
+            /* =================================================
+               VALIDATION
+            ================================================= */
 
             if (
                 !sideInput ||
@@ -843,13 +1014,17 @@ if (rsvpForm) {
             }
 
 
-            /* Hide form */
+            /* =================================================
+               HIDE FORM
+            ================================================= */
 
             rsvpForm.style.display =
                 "none";
 
 
-            /* Show success */
+            /* =================================================
+               SUCCESS
+            ================================================= */
 
             if (rsvpSuccess) {
 
@@ -860,23 +1035,30 @@ if (rsvpForm) {
             }
 
 
-            /* Show modal */
+            /* =================================================
+               MODAL
+            ================================================= */
 
             openModal();
 
 
-            /* Scroll */
+            /* =================================================
+               SCROLL
+            ================================================= */
 
             if (rsvpSuccess) {
 
-                setTimeout(() => {
+                setTimeout(
+                    () => {
 
-                    rsvpSuccess.scrollIntoView({
-                        behavior: "smooth",
-                        block: "center"
-                    });
+                        rsvpSuccess.scrollIntoView({
+                            behavior: "smooth",
+                            block: "center"
+                        });
 
-                }, 150);
+                    },
+                    150
+                );
 
             }
 
@@ -884,7 +1066,6 @@ if (rsvpForm) {
     );
 
 }
-
 
 
 /* =========================================================
@@ -902,7 +1083,6 @@ function showFormMessage() {
     alert(message);
 
 }
-
 
 
 /* =========================================================
@@ -959,6 +1139,10 @@ function closeModal() {
 }
 
 
+/* =========================================================
+   MODAL CLOSE
+========================================================= */
+
 if (modalClose) {
 
     modalClose.addEventListener(
@@ -979,6 +1163,10 @@ if (modalOverlay) {
 }
 
 
+/* =========================================================
+   ESCAPE KEY
+========================================================= */
+
 document.addEventListener(
     "keydown",
     event => {
@@ -986,7 +1174,9 @@ document.addEventListener(
         if (
             event.key === "Escape" &&
             confirmationModal &&
-            confirmationModal.classList.contains("show")
+            confirmationModal.classList.contains(
+                "show"
+            )
         ) {
 
             closeModal();
@@ -995,7 +1185,6 @@ document.addEventListener(
 
     }
 );
-
 
 
 /* =========================================================
@@ -1008,103 +1197,131 @@ const revealElements =
     );
 
 
-revealElements.forEach(element => {
+revealElements.forEach(
+    element => {
 
-    element.classList.add(
-        "reveal-element"
-    );
+        element.classList.add(
+            "reveal-element"
+        );
 
-});
+    }
+);
 
 
-const revealObserver =
-    new IntersectionObserver(
-        entries => {
+if ("IntersectionObserver" in window) {
 
-            entries.forEach(entry => {
+    const revealObserver =
+        new IntersectionObserver(
+            entries => {
 
-                if (
-                    entry.isIntersecting
-                ) {
+                entries.forEach(
+                    entry => {
 
-                    entry.target.classList.add(
-                        "revealed"
-                    );
+                        if (
+                            entry.isIntersecting
+                        ) {
 
-                    revealObserver.unobserve(
-                        entry.target
-                    );
+                            entry.target.classList.add(
+                                "revealed"
+                            );
 
-                }
 
-            });
+                            revealObserver.unobserve(
+                                entry.target
+                            );
 
-        },
-        {
-            threshold: 0.12
+                        }
+
+                    }
+                );
+
+            },
+            {
+                threshold: 0.12
+            }
+        );
+
+
+    revealElements.forEach(
+        element => {
+
+            revealObserver.observe(
+                element
+            );
+
         }
     );
 
+} else {
 
-revealElements.forEach(element => {
+    revealElements.forEach(
+        element => {
 
-    revealObserver.observe(
-        element
+            element.classList.add(
+                "revealed"
+            );
+
+        }
     );
 
-});
-
+}
 
 
 /* =========================================================
-   PREVENT MAP LINKS WITH "#"
+   MAP LINKS
 ========================================================= */
 
-document.querySelectorAll(
-    '.map-button[href="#"]'
-).forEach(button => {
+document
+    .querySelectorAll(
+        '.map-button[href="#"]'
+    )
+    .forEach(
+        button => {
 
-    button.addEventListener(
-        "click",
-        event => {
+            button.addEventListener(
+                "click",
+                event => {
 
-            event.preventDefault();
-
-
-            const message =
-                currentLanguage === "hy"
-                    ? "Քարտեզի հղումը դեռ պետք է ավելացվի։"
-                    : "Ссылка на карту пока не добавлена.";
+                    event.preventDefault();
 
 
-            alert(message);
+                    const message =
+                        currentLanguage === "hy"
+                            ? "Քարտեզի հղումը դեռ պետք է ավելացվի։"
+                            : "Ссылка на карту пока не добавлена.";
+
+
+                    alert(message);
+
+                }
+            );
 
         }
     );
-
-});
-
 
 
 /* =========================================================
    IMAGE FALLBACK
 ========================================================= */
 
-document.querySelectorAll("img").forEach(image => {
+document
+    .querySelectorAll("img")
+    .forEach(
+        image => {
 
-    image.addEventListener(
-        "error",
-        () => {
+            image.addEventListener(
+                "error",
+                () => {
 
-            image.classList.add(
-                "image-error"
+                    image.classList.add(
+                        "image-error"
+                    );
+
+                }
             );
 
         }
     );
-
-});
-
 
 
 /* =========================================================
@@ -1112,7 +1329,6 @@ document.querySelectorAll("img").forEach(image => {
 ========================================================= */
 
 setLanguage("hy");
-
 
 
 /* =========================================================
