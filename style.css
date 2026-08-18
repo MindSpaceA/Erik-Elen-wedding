@@ -1530,3 +1530,94 @@ img {
         object-fit: contain;
     }
 }
+/* =========================================================
+   OPENING SCREEN — E&E + DATE + BUTTON LOWER POSITION
+========================================================= */
+
+.opening-content {
+    height: 100%;
+    min-height: 100vh;
+    padding: 0 30px 70px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+
+    text-align: center;
+}
+
+/* E&E + DATE */
+.opening-text-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    margin: 0 0 35px;
+}
+
+/* E & E */
+.opening-monogram {
+    transform: translateY(0);
+}
+
+/* DATE */
+.opening-date {
+    margin-top: 0;
+}
+
+/* BUTTON */
+.open-invitation-button {
+    margin: 0;
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+
+    .opening-content {
+        min-height: 100vh;
+        padding: 0 20px 45px;
+
+        justify-content: flex-end;
+    }
+
+    .opening-text-group {
+        margin-bottom: 28px;
+    }
+
+    .opening-monogram {
+        font-size: 48px;
+    }
+
+    .opening-date {
+        font-size: 12px;
+    }
+
+    .open-invitation-button {
+        margin: 0;
+    }
+}
+
+
+/* =========================================================
+   SMALL PHONES
+========================================================= */
+
+@media (max-width: 380px) {
+
+    .opening-content {
+        padding-bottom: 35px;
+    }
+
+    .opening-text-group {
+        margin-bottom: 24px;
+    }
+
+    .opening-monogram {
+        font-size: 43px;
+    }
+}
