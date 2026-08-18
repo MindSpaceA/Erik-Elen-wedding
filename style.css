@@ -2973,3 +2973,6 @@ a {
     }
 
 }
+   .opening-content {
+    transform: translateY(18vh);
+}
