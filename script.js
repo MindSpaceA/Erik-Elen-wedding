@@ -373,7 +373,7 @@ function setLanguage(language) {
     });
 
 
-    /* RSVP BUTTON VALUES & HIDDEN INPUTS UPDATE */
+    /* RSVP BUTTON VALUES */
 
     document.querySelectorAll(
         ".choice-button[data-value-hy]"
@@ -384,6 +384,9 @@ function setLanguage(language) {
                 ? button.dataset.valueHy
                 : button.dataset.valueRu;
 
+        /*
+         * Preserve emoji if it already exists
+         */
         const emoji =
             button.textContent.trim().startsWith("❤️")
                 ? "❤️ "
@@ -393,32 +396,6 @@ function setLanguage(language) {
 
         button.textContent =
             emoji + value;
-
-        if (button.classList.contains("selected")) {
-
-            const group = button.dataset.group;
-
-            if (group === "side") {
-
-                const input = document.getElementById("sideInput");
-
-                if (input) {
-                    input.value = value;
-                }
-
-            }
-
-            if (group === "attendance") {
-
-                const input = document.getElementById("attendanceInput");
-
-                if (input) {
-                    input.value = value;
-                }
-
-            }
-
-        }
 
     });
 
@@ -482,7 +459,7 @@ if (openInvitation) {
         }
 
 
-        /* Scroll to main section */
+        /* Small delay before scrolling */
 
         setTimeout(() => {
 
@@ -533,31 +510,6 @@ function updateMusicIcon() {
 }
 
 
-if (weddingMusic) {
-
-    weddingMusic.addEventListener("pause", () => {
-
-        if (musicButton) {
-            musicButton.classList.remove("active");
-        }
-
-        updateMusicIcon();
-
-    });
-
-    weddingMusic.addEventListener("play", () => {
-
-        if (musicButton) {
-            musicButton.classList.add("active");
-        }
-
-        updateMusicIcon();
-
-    });
-
-}
-
-
 if (musicButton) {
 
     musicButton.addEventListener("click", async () => {
@@ -573,6 +525,8 @@ if (musicButton) {
 
                 await weddingMusic.play();
 
+                musicButton.classList.add("active");
+
             } catch (error) {
 
                 console.log(
@@ -585,7 +539,12 @@ if (musicButton) {
 
             weddingMusic.pause();
 
+            musicButton.classList.remove("active");
+
         }
+
+
+        updateMusicIcon();
 
     });
 
@@ -599,11 +558,13 @@ if (musicButton) {
 
 /*
    Wedding date:
-   October 2, 2026, 13:00 local time
+   October 2, 2026
+
+   Change the time below if needed.
 */
 
 const weddingDate =
-    new Date(2026, 9, 2, 13, 0, 0);
+    new Date("2026-10-02T13:00:00");
 
 
 function updateCountdown() {
@@ -826,10 +787,6 @@ if (rsvpForm) {
             /* Validation */
 
             if (
-                !sideInput ||
-                !attendanceInput ||
-                !guestName ||
-                !guestCount ||
                 !sideInput.value ||
                 !attendanceInput.value ||
                 !guestName.value.trim() ||
@@ -851,13 +808,9 @@ if (rsvpForm) {
 
             /* Show success */
 
-            if (rsvpSuccess) {
-
-                rsvpSuccess.classList.add(
-                    "show"
-                );
-
-            }
+            rsvpSuccess.classList.add(
+                "show"
+            );
 
 
             /* Show modal */
@@ -867,18 +820,14 @@ if (rsvpForm) {
 
             /* Scroll */
 
-            if (rsvpSuccess) {
+            setTimeout(() => {
 
-                setTimeout(() => {
+                rsvpSuccess.scrollIntoView({
+                    behavior: "smooth",
+                    block: "center"
+                });
 
-                    rsvpSuccess.scrollIntoView({
-                        behavior: "smooth",
-                        block: "center"
-                    });
-
-                }, 150);
-
-            }
+            }, 150);
 
         }
     );
@@ -985,7 +934,6 @@ document.addEventListener(
 
         if (
             event.key === "Escape" &&
-            confirmationModal &&
             confirmationModal.classList.contains("show")
         ) {
 
