@@ -539,60 +539,55 @@ a {
 }
 
 /* =========================================================
-   HERO
+   HERO PHOTO WITH OVERLAY NAMES
 ========================================================= */
-
-.hero {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column; /* Ապահովում է element-ների ճիշտ հերթականությունը վերևից ներքև */
-    align-items: center;
-    justify-content: center;
-    padding: 60px 20px; /* Ավելացվել է padding վերևից ու ներքևից */
-    background:
-        radial-gradient(
-            circle at 50% 25%,
-            #ffffff 0%,
-            #fbfaf7 58%,
-            #f1f6f8 100%
-        );
-}
 
 .hero-photo {
     width: min(450px, 90vw);
-    margin: 20px auto 50px; /* Ներքևի margin-ը մեծացրել ենք (35px -> 50px), որ անունները ավելի իջնեն */
+    margin: 40px auto 35px;
     padding: 10px;
     background: rgba(255,255,255,0.85);
     border: 1px solid rgba(142,168,179,0.20);
     box-shadow: var(--shadow);
+    position: relative; /* Պարտադիր է, որ անունները դիրքավորվեն նկարի համեմատ */
+    overflow: hidden;   /* Որ տեքստը նկարի սահմաններից դուրս չգա */
 }
 
 .hero-photo img {
     aspect-ratio: 0.82;
     object-fit: cover;
-    width: 100%; /* Ապահովում է նկարի ճիշտ չափը */
+    width: 100%;
+    display: block;
 }
 
 .couple-names {
-    color: var(--text-dark);
-    font-family: var(--script);
-    font-size: clamp(65px, 11vw, 110px);
-    font-weight: 400;
-    line-height: 1.2; /* 1-ից սարքեցինք 1.2, որպեսզի տառերի ծայրերը չկտրվեն ու չսեղմվեն */
-    margin-top: 15px; /* Ավելացվել է վերևի հեռավորություն */
-    margin-bottom: 25px; /* Հեռավորություն հաջորդ տեքստից */
+    position: absolute;
+    bottom: 20px; /* Որքան փոքրացնես թիվը (օր. 10px), այնքան ավելի կիջնի ներքև */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
     text-align: center;
+    z-index: 2;
+    
+    color: #ffffff; /* Սպիտակ գույն, որ նկարի վրա պարզ երևա */
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.6); /* Մուգ ստվեր տառերի հետևում, որ կարդացվի */
+    font-family: var(--script);
+    font-size: clamp(45px, 8vw, 75px);
+    font-weight: 400;
+    line-height: 1;
+    margin: 0;
+    pointer-events: none;
 }
 
 .couple-names span {
     display: inline-block;
-    margin: 0 12px;
+    margin: 0 8px;
     font-family: var(--serif);
-    font-size: 45px;
+    font-size: 35px;
     font-style: italic;
-    color: var(--blue-dark);
+    color: #ffffff;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.6);
 }
-
 .invitation-message {
     color: var(--text);
     font-size: 20px;
