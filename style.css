@@ -1440,3 +1440,93 @@ a {
         min-width: 48px;
     }
 }
+/* =========================================================
+   IMAGE FIX — KEEP FULL IMAGE
+========================================================= */
+
+img {
+    display: block;
+    max-width: 100%;
+}
+
+/* OPENING IMAGE */
+.opening-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+}
+
+/* HERO IMAGE */
+.hero-photo img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    object-position: center;
+}
+
+/* EVENT IMAGES */
+.event-photo img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    object-position: center;
+}
+
+/* FINAL IMAGE */
+.final-photo img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    object-position: center;
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+
+    .opening-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+    }
+
+    .hero-photo {
+        width: 90%;
+        max-width: 350px;
+        margin: 30px auto;
+    }
+
+    .hero-photo img {
+        width: 100%;
+        height: auto;
+        object-fit: contain;
+    }
+
+    .event-photo {
+        width: 100%;
+        max-width: 360px;
+        margin: 20px auto;
+    }
+
+    .event-photo img {
+        width: 100%;
+        height: auto;
+        object-fit: contain;
+    }
+
+    .final-photo {
+        width: 90%;
+        max-width: 350px;
+        margin: 0 auto 40px;
+    }
+
+    .final-photo img {
+        width: 100%;
+        height: auto;
+        object-fit: contain;
+    }
+}
