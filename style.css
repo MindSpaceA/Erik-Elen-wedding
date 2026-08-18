@@ -2701,32 +2701,275 @@ a {
 
     }
 
-}
 /* =========================================================
-   OPENING IMAGE — FULL IMAGE
+   OPENING SCREEN — FULL IMAGE + LOWER CONTENT
 ========================================================= */
 
 .opening-image {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+
     display: flex;
     align-items: center;
     justify-content: center;
+
     background: #ffffff;
 }
 
 .opening-image img {
     width: 100%;
     height: 100%;
+
     object-fit: contain;
     object-position: center;
 }
 
 
-/* MOBILE */
+/* =========================================================
+   OPENING CONTENT — MOVE DOWN
+========================================================= */
+
+.opening-content {
+
+    position: relative;
+    z-index: 5;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+
+    width: 100%;
+    min-height: 100vh;
+
+    padding:
+        0 30px
+        12vh;
+
+    text-align: center;
+
+    color: #ffffff;
+
+    transform: none;
+}
+
+
+/* =========================================================
+   E & E
+========================================================= */
+
+.opening-monogram {
+
+    margin-bottom: 18px;
+
+    font-size: clamp(
+        48px,
+        7vw,
+        72px
+    );
+
+    letter-spacing: 5px;
+
+    color: #ffffff;
+
+    text-shadow:
+        0 3px 18px rgba(0,0,0,0.28),
+        0 1px 5px rgba(0,0,0,0.18);
+}
+
+
+.opening-monogram span {
+
+    margin: 0 6px;
+
+    font-size: 0.55em;
+}
+
+
+/* =========================================================
+   LINE
+========================================================= */
+
+.opening-line {
+
+    width: 45px;
+
+    height: 1px;
+
+    margin:
+        0 0 15px;
+
+    background:
+        rgba(255,255,255,0.85);
+}
+
+
+/* =========================================================
+   DATE
+========================================================= */
+
+.opening-date {
+
+    font-size: 14px;
+
+    letter-spacing: 4px;
+
+    color: #ffffff;
+
+    text-shadow:
+        0 2px 12px
+        rgba(0,0,0,0.25);
+}
+
+
+/* =========================================================
+   OPEN BUTTON
+========================================================= */
+
+.open-invitation-button {
+
+    margin-top: 28px;
+
+    min-width: 215px;
+
+    padding:
+        13px 24px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 13px;
+
+    border:
+        1px solid
+        rgba(255,255,255,0.7);
+
+    border-radius: 30px;
+
+    background:
+        rgba(255,255,255,0.18);
+
+    backdrop-filter:
+        blur(12px);
+
+    -webkit-backdrop-filter:
+        blur(12px);
+
+    color: #ffffff;
+
+    box-shadow:
+        0 10px 30px
+        rgba(0,0,0,0.12);
+
+    text-shadow:
+        0 1px 8px
+        rgba(0,0,0,0.2);
+}
+
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
 
 @media (max-width: 600px) {
 
-    .opening-image img {
-        object-fit: contain;
+    .opening-content {
+
+        padding:
+            0 20px
+            8vh;
+
+    }
+
+
+    .opening-monogram {
+
+        margin-bottom: 14px;
+
+        font-size: 48px;
+
+        letter-spacing: 3px;
+
+    }
+
+
+    .opening-monogram span {
+
+        margin: 0 4px;
+
+    }
+
+
+    .opening-line {
+
+        width: 35px;
+
+        margin-bottom: 12px;
+
+    }
+
+
+    .opening-date {
+
+        font-size: 12px;
+
+        letter-spacing: 3px;
+
+    }
+
+
+    .open-invitation-button {
+
+        min-width: 190px;
+
+        margin-top: 23px;
+
+        padding:
+            12px 18px;
+
+        font-size: 13px;
+
+    }
+
+}
+
+
+/* =========================================================
+   VERY SMALL PHONES
+========================================================= */
+
+@media (max-width: 380px) {
+
+    .opening-content {
+
+        padding-bottom: 6vh;
+
+    }
+
+
+    .opening-monogram {
+
+        font-size: 43px;
+
+    }
+
+
+    .opening-date {
+
+        font-size: 11px;
+
+    }
+
+
+    .open-invitation-button {
+
+        min-width: 180px;
+
     }
 
 }
